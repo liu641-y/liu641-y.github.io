@@ -145,7 +145,7 @@
         <input onfocus="befocus(6)" class="inp" id="six" maxlength="1" type="text">
     </form>
     <div class="butt">
-        <button onclick="show()" class="confirm">确定</button>
+        <button id="consern"  class="confirm">确定</button>
     </div>
 
 
@@ -657,8 +657,7 @@
         function befocus(ind) {
             inputarr[ind - 1].value = ''
         }
-
-        function show() {
+        document.getElementById('consern').onclick = function () {
             // navigator.vibrate(1000);
             cletter = 0;
             let correctworld = false
