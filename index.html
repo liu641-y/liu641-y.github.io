@@ -658,7 +658,8 @@
         function befocus(ind) {
             inputarr[ind - 1].value = ''
         }
-        document.getElementById('consern').onclick = function () {
+        document.getElementById('consern').addEventListener('touchend',concer,false)
+         function concer () {
             // navigator.vibrate(1000);
             cletter = 0;
             let correctworld = false
