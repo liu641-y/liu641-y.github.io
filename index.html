@@ -2,9 +2,19 @@
 <html lang="en">
 
 <head>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <!-- 强制让文档的宽度与设备的宽度保持1:1，并且文档最大的宽度比例是1.0，且不允许用户点击屏幕放大浏览；尤其要注意的是content里多个属性的设置一定要用分号+空格来隔开，如果不规范将不会起作用。      -->
+     
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <!-- iphone设备中的safari私有meta标签，它表示：允许全屏模式浏览         -->
+    
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+     <!-- iphone的私有标签，它指定的iphone中safari顶端的状态条的样式 -->
+     
+    <!-- <meta content="telephone=no" name="format-detection" />
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
     <title>mygame</title>
 </head>
 <style>
@@ -659,7 +669,9 @@
             inputarr[ind - 1].value = ''
         }
         document.getElementById('consern').addEventListener('touchstart',concer,false)
-         function concer () {
+        document.getElementById('consern').addEventListener('click',concer,false)
+         function concer (e) {
+             console.log(e, 'console')
             // navigator.vibrate(1000);
             cletter = 0;
             let correctworld = false
