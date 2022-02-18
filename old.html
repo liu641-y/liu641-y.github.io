@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <!-- 强制让文档的宽度与设备的宽度保持1:1，并且文档最大的宽度比例是1.0，且不允许用户点击屏幕放大浏览；尤其要注意的是content里多个属性的设置一定要用分号+空格来隔开，如果不规范将不会起作用。      -->
+     
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <!-- iphone设备中的safari私有meta标签，它表示：允许全屏模式浏览         -->
+    
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+     <!-- iphone的私有标签，它指定的iphone中safari顶端的状态条的样式 -->
+     
+    <!-- <meta content="telephone=no" name="format-detection" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <title>mygame</title>
+</head>
+<style>
+    body {
+        /* background-image: url(https://pica.zhimg.com/80/v2-0aa920a67c18f3d9a6169b9a28e0695a_720w.jpg?source=1940ef5c); */
+        background-color: black;
+        background-size: cover;
+        color: white;
+    }
+
+    .row {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 7px;
+    }
+
+    .let {
+        margin: 0 5px;
+        display: inline-block;
+        height: 35px;
+        width: 25px;
+        border-radius: 3px;
+        line-height: 30px;
+        font-size: 30px;
+        border: 2px solid white;
+        text-align: center;
+        background-color: black;
+        color: white;
+    }
+
+    .rules {
+        margin-bottom: 15px;
+    }
+
+    .inp {
+        display: inline-block;
+        flex-grow: 0;
+        width: 35px;
+        height: 35px;
+        line-height: 35px;
+        font-size: 30px;
+        text-align: center;
+        margin: 0 5px;
+        border-radius: 8px;
+    }
+
+    .butt,
+    .myform {
+        display: flex;
+        justify-content: center;
+    }
+
+    #con span {
+        height: 40px;
+        line-height: 40px;
+        width: 40px;
+        display: inline-block;
+        color: white;
+        font-size: 30px;
+        text-align: center;
+        margin-right: 5px;
+        margin-left: 5px;
+        border-radius: 2px;
+        margin-bottom: 5px;
+    }
+
+    .have {
+        background-color: #E6A23C;
+    }
+
+    .true {
+        background-color: #67C23A;
+    }
+
+    .unhave {
+        background-color: #F56C6C;
+    }
+
+    .confirm {
+       
+        margin: auto;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        background-color: pink;
+        color: white;
+        border: none;
+        height: 50px;
+        line-height: 50px;
+        /* width: 80px; */
+        font-size: 30px;
+        border-radius: 15px;
+    }
+</style>
+
+<body>
+    <div class="row">
+        <span class="let" id="q">q</span>
+        <span class="let" id="w">w</span>
+        <span class="let" id="e">e</span>
+        <span class="let" id="r">r</span>
+        <span class="let" id="t">t</span>
+        <span class="let" id="y">y</span>
+        <span class="let" id="u">u</span>
+        <span class="let" id="i">i</span>
+        <span class="let" id="o">o</span>
+        <span class="let" id="p">p</span>
+
+    </div>
+    <div class="row">
+        <span class="let" id="a">a</span>
+        <span class="let" id="s">s</span>
+        <span class="let" id="d">d</span>
+        <span class="let" id="f">f</span>
+        <span class="let" id="g">g</span>
+        <span class="let" id="h">h</span>
+        <span class="let" id="j">j</span>
+        <span class="let" id="k">k</span>
+        <span class="let" id="l">l</span>
+
+    </div>
+    <div class="row">
+        <span class="let" id="z">z</span>
+        <span class="let" id="x">x</span>
+        <span class="let" id="c">c</span>
+        <span class="let" id="v">v</span>
+        <span class="let" id="b">b</span>
+        <span class="let" id="n">n</span>
+        <span class="let" id="m">m</span>
+    </div>
+    <div class="rules">
+        游戏规则： 绿色为字母正确，棕色为含有该字母但位置不正确，红色为不包含此字母,(最新版本)
+    </div>
+    <form name="myform" class="myform">
+        <input onfocus="befocus(1)" class="inp" id="fir" maxlength="1" type="text">
+        <input onfocus="befocus(2)" class="inp" id="sec" maxlength="1" type="text">
+        <input onfocus="befocus(3)" class="inp" id="thr" maxlength="1" type="text">
+        <input onfocus="befocus(4)" class="inp" id="fou" maxlength="1" type="text">
+        <input onfocus="befocus(5)" class="inp" id="fiv" maxlength="1" type="text">
+        <input onfocus="befocus(6)" class="inp" id="six" maxlength="1" type="text">
+    </form>
+    <div class="butt">
+        <button id="consern"  class="confirm">确定</button>
+    </div>
+
+
+    <div id="con"></div>
+    <script>
+        let warr = ['people', 'should', 'school', 'become', 'really', 'family', 'system', 'during', 'number',
+            'always', 'happen', 'before', 'mother', 'though', 'little', 'around', 'friend', 'father', 'member',
+            'almost', 'change', 'minute', 'social', 'follow', 'around', 'parent', 'create', 'public', 'others',
+            'office', 'health', 'person', 'within', 'result', 'change', 'reason', 'before', 'moment', 'enough',
+            'across', 'second', 'toward', 'policy', 'appear', 'market', 'expect', 'nation', 'course', 'behind',
+            'remain', 'effect', 'little', 'former', 'report', 'better', 'effort', 'decide', 'strong', 'leader',
+            'police', 'return', 'report', 'better', 'action', 'season', 'player', 'record', 'ground', 'matter',
+            'center', 'couple', 'figure', 'street', 'itself', 'either', 'recent', 'doctor', 'worker', 'simply',
+            'source', 'nearly', 'choose', 'window', 'listen', 'chance', 'energy', 'period', 'course', 'summer',
+            'likely', 'letter', 'choice', 'single', 'church', 'future', 'anyone', 'myself', 'second', 'author',
+            'agency', 'nature', 'reduce', 'before', 'common', 'series', 'animal', 'factor', 'decade', 'artist',
+            'career', 'beyond', 'simple', 'accept', 'answer', 'amount', 'growth', 'degree', 'wonder', 'attack',
+            'region', 'pretty', 'arrive', 'lawyer', 'answer', 'sister', 'design', 'little', 'indeed', 'public',
+            'rather', 'entire', 'design', 'enough', 'forget', 'remove', 'memory', 'expert', 'spring', 'finish',
+            'theory', 'impact', 'charge', 'reveal', 'weapon', 'manage', 'camera', 'weight', 'affect', 'inside',
+            'rather', 'writer', 'middle', 'detail', 'method', 'sexual', 'cancer', 'finger', 'garden', 'notice',
+            'modern', 'budget', 'victim', 'threat', 'dinner', 'figure', 'relate', 'travel', 'debate', 'senior',
+            'assume', 'suffer', 'speech', 'option', 'forest', 'global', 'Senate', 'reform', 'access', 'credit',
+            'corner', 'recall', 'safety', 'income', 'strike', 'nobody', 'object', 'client', 'please', 'attend',
+            'spirit', 'battle', 'crisis', 'define', 'easily', 'vision', 'status', 'normal', 'slowly', 'driver',
+            'handle', 'return', 'survey', 'winter', 'Soviet', 'refuse', 'screen', 'future', 'middle', 'reader',
+            'target', 'prison', 'demand', 'flight', 'inside', 'emerge', 'bright', 'sample', 'settle', 'highly',
+            'mostly', 'lesson', 'living', 'unless', 'border', 'gather', 'critic', 'aspect', 'result', 'insist',
+            'annual', 'French', 'affair', 'spread', 'ignore', 'belief', 'murder', 'review', 'editor', 'engage',
+            'coffee', 'anyway', 'commit', 'female', 'afraid', 'native', 'charge', 'Indian', 'active', 'extend',
+            'demand', 'remind', 'United', 'depend', 'direct', 'famous', 'flower', 'supply', 'search', 'circle',
+            'device', 'bottom', 'island', 'studio', 'damage', 'intend', 'attack', 'danger', 'desire', 'injury',
+            'direct', 'engine', 'fourth', 'expand', 'ticket', 'mental', 'farmer', 'planet', 'obtain', 'invite',
+            'repeat', 'pocket', 'breath', 'belong', 'advice', 'breast', 'record', 'thanks', 'yellow', 'shadow',
+            'locate', 'county', 'bridge', 'profit', 'muscle', 'notion', 'prefer', 'search', 'museum', 'beauty',
+            'unique', 'ethnic', 'stress', 'select', 'actual', 'bottle', 'hardly', 'launch', 'defend', 'matter',
+            'ensure', 'extent', 'estate', 'pursue', 'Jewish', 'branch', 'relief', 'manner', 'rating', 'golden',
+            'motion', 'German', 'gender', 'except', 'afford', 'regime', 'appeal', 'mirror', 'length', 'secret',
+            'master', 'except', 'winner', 'volume', 'travel', 'pepper', 'divide', 'oppose', 'league', 'employ',
+            'barely', 'sector', 'beside', 'merely', 'female', 'invest', 'expose', 'narrow', 'either', 'accuse',
+            'useful', 'secret', 'reject', 'talent', 'escape', 'height', 'assess', 'plenty', 'behind', 'campus',
+            'proper', 'guilty', 'living', 'column', 'signal', 'regard', 'twenty', 'review', 'prayer', 'cheese',
+            'permit', 'scream', 'deeply', 'agenda', 'unable', 'arrest', 'visual', 'fairly', 'silent', 'widely',
+            'inform', 'bother', 'enable', 'saving', 'desert', 'double', 'formal', 'stream', 'racial', 'potato',
+            'online', 'jacket', 'rarely', 'priest', 'adjust', 'retire', 'attach', 'Indian', 'severe', 'impose',
+            'symbol', 'clinic', 'tomato', 'butter', 'surely', 'glance', 'fellow', 'smooth', 'nearby', 'silver',
+            'junior', 'rather', 'throat', 'salary', 'pretty', 'strike', 'unlike', 'resist', 'supply', 'assist',
+            'viewer', 'secure', 'recipe', 'wooden', 'honest', 'origin', 'advise', 'wealth', 'deputy', 'assure',
+            'dealer', 'phrase', 'Muslim', 'switch', 'killer', 'assign', 'heaven', 'wonder', 'button', 'bottom',
+            'burden', 'string', 'resort', 'tissue', 'broken', 'stupid', 'occupy', 'cousin', 'retain', 'latter',
+            'terror', 'though', 'bullet', 'square', 'gently', 'detect', 'likely', 'market', 'remote', 'mutual',
+            'mainly', 'freeze', 'singer', 'evolve', 'partly', 'thirty', 'treaty', 'double', 'sudden', 'tongue',
+            'target', 'stable', 'appeal', 'steady', 'stress', 'vessel', 'dining', 'wisdom', 'garlic', 'poetry',
+            'scared', 'fellow', 'slight', 'differ', 'custom', 'damage', 'carbon', 'closer', 'scheme', 'galaxy',
+            'arrest', 'hunter', 'infant', 'derive', 'fabric', 'French', 'asleep', 'tennis', 'barrel', 'modest',
+            'stroke', 'prompt', 'absorb', 'across', 'cotton', 'flavor', 'orange', 'assert', 'valley', 'versus',
+            'German', 'hungry', 'wander', 'submit', 'legacy', 'shower', 'depict', 'garage', 'borrow', 'comedy',
+            'twelve', 'weekly', 'devote', 'ethics', 'summit', 'gifted', 'medium', 'basket', 'powder', 'cookie',
+            'orange', 'admire', 'exceed', 'rhythm', 'lovely', 'script', 'tactic', 'margin', 'horror', 'defeat',
+            'sacred', 'square', 'soccer', 'tunnel', 'virtue', 'abroad', 'makeup', 'legend', 'remark', 'resign',
+            'reward', 'gentle', 'invent', 'ritual', 'insect', 'salmon', 'combat', 'bitter', 'subtle', 'bishop',
+            'export', 'closet', 'murder', 'retail', 'excuse', 'online', 'deadly', 'Muslim', 'Korean', 'suburb',
+            'unlike', 'render', 'strict', 'motive', 'notice', 'temple', 'medium', 'random', 'domain', 'cattle',
+            'fiscal', 'endure', 'strain', 'guitar', 'behave', 'dancer', 'colony', 'closed', 'modify', 'glance',
+            'survey', 'govern', 'ballot', 'praise', 'injure', 'nearby', 'excuse', 'canvas', 'matter', 'format',
+            'turkey', 'convey', 'finish', 'frozen', 'desire', 'spouse', 'resume', 'sodium', 'bounce', 'signal',
+            'pickup', 'needle', 'timing', 'rescue', 'firmly', 'poster', 'oxygen', 'pastor', 'punish', 'equity',
+            'statue', 'repair', 'decent', 'rescue', 'purple', 'eating', 'parade', 'cancel', 'debate', 'candle',
+            'handle', 'entity', 'inside', 'vanish', 'racism', 'casual', 'enroll', 'intent', 'switch', 'repair',
+            'toilet', 'hidden', 'tender', 'lonely', 'shared', 'pillow', 'spread', 'ruling', 'lately', 'softly',
+            'verbal', 'tribal', 'import', 'spring', 'divine', 'genius', 'broker', 'credit', 'output', 'please',
+            'rocket', 'donate', 'inmate', 'tackle', 'senior', 'carpet', 'bubble', 'bloody', 'defeat', 'accent',
+            'escape', 'shrimp', 'voting', 'patrol', 'immune', 'exotic', 'secure', 'drawer', 'regard', 'runner',
+            'empire', 'puzzle', 'tragic', 'safely', 'eleven', 'bureau', 'breeze', 'costly', 'object', 'insert',
+            'helmet', 'casino', 'charge', 'hockey', 'liquid', 'foster', 'access', 'filter', 'rabbit', 'outfit',
+            'patent', 'pencil', 'banker', 'eighth', 'behalf', 'reward', 'stance', 'compel', 'shrink', 'fierce',
+            'weaken', 'openly', 'unfair', 'deploy', 'ladder', 'jungle', 'invade', 'sphere', 'unfold', 'collar',
+            'streak', 'monkey', 'mentor', 'sleeve', 'debris', 'parish', 'hunger', 'faster', 'regret', 'carrot',
+            'plunge', 'refuge', 'outlet', 'intact', 'vendor', 'thrive', 'peanut', 'comply', 'strain', 'patron',
+            'solely', 'banana', 'palace', 'cruise', 'mobile', 'forbid', 'brutal', 'thread', 'coming', 'remark',
+            'circle', 'denial', 'rental', 'warmth', 'liquid', 'battle', 'regard', 'regain', 'permit', 'rubber',
+            'freely', 'update', 'beyond', 'marker', 'preach', 'bucket', 'marble', 'mutter', 'depart', 'trauma',
+            'ribbon', 'screen', 'within', 'shorts', 'soften', 'sudden', 'hazard', 'seldom', 'launch', 'timber',
+            'flying', 'seller', 'public', 'marine', 'boring', 'bronze', 'praise', 'vacuum', 'sensor', 'manual',
+            'pistol', 'devise', 'bomber', 'anchor', 'betray', 'clever', 'skiing', 'aboard', 'tenure', 'locker',
+            'autumn', 'merger', 'trader', 'stroke', 'sailor', 'caller', 'making', 'fossil', 'center', 'viable',
+            'cowboy', 'sketch', 'copper', 'combat', 'foster', 'strive', 'lyrics', 'dragon', 'embody', 'worthy',
+            'remedy', 'purely', 'lesser', 'poorly', 'mature', 'clutch', 'kidney', 'loving', 'ending', 'baking',
+            'pledge', 'infect', 'double', 'offend', 'condom', 'master', 'rookie', 'scream', 'hatred', 'induce',
+            'enlist', 'update', 'chorus', 'revive', 'reside', 'export', 'allege', 'attain', 'couple', 'excite',
+            'urgent', 'banner', 'rising', 'reform', 'strand', 'uphold', 'subway', 'native', 'skinny', 'invoke',
+            'theirs', 'inside', 'atomic', 'crying', 'holder', 'canyon', 'trophy', 'ironic', 'rattle', 'import',
+            'gospel', 'prince', 'waiter', 'tumble', 'backup', 'rotate', 'reason', 'narrow', 'polite', 'scrape',
+            'supper', 'sample', 'absent', 'namely', 'poison', 'amount', 'tenant', 'spider', 'corpse', 'melody',
+            'memoir', 'cherry', 'luxury', 'meadow', 'mining', 'wallet', 'wildly', 'inject', 'evenly', 'shield',
+            'picnic', 'gravel', 'verify', 'boxing', 'select', 'divert', 'awaken', 'loudly', 'summon', 'dangle',
+            'affirm', 'liquor', 'linger', 'sunset', 'facial', 'excess', 'Polish', 'Latino', 'cruise', 'lively',
+            'luxury', 'harbor', 'neatly', 'linear', 'mosque', 'single', 'revise', 'failed', 'pledge', 'castle',
+            'fulfil', 'thrill', 'heroin', 'anchor', 'laptop', 'matrix', 'runway', 'filter', 'stroll', 'lineup',
+            'saying', 'Easter', 'thrust', 'allied', 'absurd', 'regret', 'ruling', 'mighty', 'defect', 'finely',
+            'static', 'artery', 'grower', 'thrill', 'thesis', 'cosmic', 'ponder', 'smooth', 'lounge', 'simmer',
+            'bundle', 'common', 'nicely', 'loosen', 'intake', 'forced', 'fringe', 'tattoo', 'census', 'murmur',
+            'circus', 'detail', 'excess', 'stride', 'Soviet', 'amazed', 'slogan', 'accord', 'snatch', 'overly',
+            'albeit', 'shrine', 'misery', 'avenue', 'addict', 'indoor', 'notify', 'cereal', 'Arctic', 'moving',
+            'humble', 'mammal', 'ground', 'upward', 'stereo', 'velvet', 'lethal', 'entail', 'roller', 'heroic',
+            'offset', 'insure', 'Viking', 'shiver', 'shield', 'saddle', 'hammer', 'burial', 'packet', 'coffin',
+            'server', 'lender', 'magnet', 'module', 'stripe', 'potent', 'sorrow', 'pastry', 'oyster', 'desert',
+            'coming', 'nephew', 'squint', 'racist', 'varied', 'hammer', 'tricky', 'cement', 'recite', 'robust',
+            'clause', 'mature', 'resent', 'temper', 'ritual', 'stride', 'trench', 'diesel', 'roster', 'insane',
+            'indict', 'marked', 'turtle', 'sticky', 'clergy', 'orient', 'pillar', 'adhere', 'parlor', 'uneasy',
+            'tackle', 'hitter', 'ballet', 'insult', 'golfer', 'embark', 'asthma', 'blouse', 'firing', 'refine',
+            'sermon', 'hurdle', 'sturdy', 'voyage', 'propel', 'basics', 'plague', 'expire', 'smoker', 'embryo',
+            'violin', 'escort', 'reopen', 'stream', 'elicit', 'oblige', 'parole', 'splash', 'poetic', 'unveil',
+            'flawed', 'bunker', 'deepen', 'crouch', 'inhale', 'vacant', 'scarce', 'median', 'angler', 'dating',
+            'buying', 'wholly', 'hybrid', 'pierce', 'serial', 'boomer', 'gossip', 'demise', 'crater', 'enrich',
+            'unlock', 'divide', 'superb', 'squash', 'filing', 'blonde', 'benign', 'lumber', 'calmly', 'rugged',
+            'kidnap', 'staple', 'canned', 'plaque', 'tester', 'canopy', 'manual', 'triple', 'fungus', 'enzyme',
+            'postal', 'hybrid', 'myriad', 'heated', 'folder', 'harass', 'behalf', 'confer', 'grader', 'arouse',
+            'dental', 'napkin', 'unload', 'knight', 'harbor', 'plague', 'beetle', 'huddle', 'pirate', 'sewage',
+            'triple', 'stolen', 'batter', 'effect', 'felony', 'fusion', 'shovel', 'puppet', 'chapel', 'single',
+            'burger', 'throne', 'diaper', 'gunman', 'frenzy', 'recall', 'batter', 'ginger', 'aerial', 'giggle',
+            'tariff', 'poison', 'raised', 'cohort', 'genome', 'lament', 'ignite', 'keeper', 'plight', 'hollow',
+            'sleepy', 'awhile', 'Madame', 'starve', 'impair', 'timely', 'yogurt', 'layout', 'sketch', 'eighty',
+            'mumble', 'morale', 'almond', 'topple', 'cooked', 'vastly', 'aboard', 'orphan', 'crunch', 'rubble',
+            'detain', 'cavity', 'novice', 'hiring', 'impact', 'runoff', 'ground', 'bypass', 'facade', 'creamy',
+            'intent', 'mirror', 'affect', 'bruise', 'patrol', 'sitcom', 'lessen', 'payoff', 'cellar', 'recede',
+            'abound', 'string', 'profit', 'ordeal', 'inning', 'proven', 'outing', 'thinly', 'insult', 'wicked',
+            'parcel', 'accord', 'recess', 'opener', 'sliced', 'slower', 'asylum', 'psyche', 'lizard', 'tailor',
+            'marvel', 'thrust', 'layoff', 'upward', 'aspire', 'pardon', 'walnut', 'splash', 'nickel', 'breach',
+            'tablet', 'Korean', 'resort', 'fumble', 'erotic', 'polish', 'jersey', 'fallen', 'coarse', 'grease',
+            'fasten', 'noodle', 'podium', 'outset', 'pastel', 'border', 'sprout', 'pigeon', 'spinal', 'shower',
+            'unsure', 'equate', 'unseen', 'Shiite', 'spiral', 'bridge', 'flying', 'cooler', 'delete', 'bakery',
+            'intern', 'litter', 'sniper', 'uneven', 'coyote', 'freeze', 'advent', 'ripple', 'carved', 'cinema',
+            'ragged', 'sandal', 'square', 'scenic', 'cosmos', 'Syrian', 'celery', 'socket', 'famine', 'harden',
+            'hinder', 'burner', 'hollow', 'alpine', 'escort', 'bamboo', 'plasma', 'stifle', 'Danish', 'ninety',
+            'mortar', 'liable', 'groove', 'packed', 'curved', 'thwart', 'buffet', 'floral', 'mingle', 'martyr',
+            'rotten', 'litter', 'acting', 'decree', 'lesion', 'bodily', 'muster', 'cannon', 'chilly', 'convoy',
+            'mildly', 'mixing', 'darken', 'worsen', 'chosen', 'devour', 'addict', 'humane', 'rubber', 'stigma',
+            'reckon', 'thread', 'zoning', 'nebula', 'guided', 'muffin', 'glossy', 'influx', 'ghetto', 'sprint',
+            'allude', 'cleric', 'seduce', 'meteor', 'attest', 'number', 'eyelid', 'cradle', 'ranger', 'relish',
+            'filthy', 'abrupt', 'nestle', 'heater', 'caucus', 'rumble', 'purity', 'clutch', 'buffer', 'covert',
+            'beckon', 'Navajo', 'disarm', 'impede', 'clench', 'barren', 'cliche', 'tavern', 'nipple', 'infuse',
+            'causal', 'coping', 'sweaty', 'greedy', 'sequel', 'helper', 'yearly', 'entree', 'revolt', 'buckle',
+            'puzzle', 'salute', 'citrus', 'raisin', 'unrest', 'puddle', 'soothe', 'dismay', 'lavish', 'hamper',
+            'herbal', 'ratify', 'walker', 'damned', 'yellow', 'spiral', 'gadget', 'nuance', 'wisely', 'rapper',
+            'midday', 'barber', 'unsafe', 'rocker', 'gamble', 'Arabic', 'solemn', 'jumper', 'bounty', 'concur',
+            'camper', 'paddle', 'clumsy', 'portal', 'amused', 'autism', 'backer', 'cartel', 'rename', 'gaming',
+            'redeem', 'sprawl', 'daring', 'twitch', 'tanker', 'carton', 'shriek', 'sponge', 'fridge', 'racist',
+            'menace', 'opaque', 'nausea', 'optics', 'crunch', 'falter', 'orchid', 'cactus', 'Hebrew', 'warden',
+            'scurry', 'futile', 'caring', 'cutter', 'hustle', 'ballad', 'flavor', 'losing', 'outlaw', 'radius',
+            'trendy', 'unison', 'lining', 'framed', 'banish', 'bestow', 'candid', 'upbeat', 'tangle', 'waiver',
+            'hasten', 'jagged', 'digest', 'flurry', 'dismal', 'sloppy', 'perish', 'healer', 'donkey', 'tickle',
+            'jockey', 'polish', 'anthem', 'vanity', 'dilute', 'repeat', 'wizard', 'ascend', 'exempt', 'mortal',
+            'ashore', 'eldest', 'sulfur', 'marvel', 'repeal', 'riches', 'somber', 'robber', 'engulf', 'subtly',
+            'juggle', 'casket', 'meager', 'pollen', 'seeker', 'skater', 'apiece', 'browse', 'finite', 'impart',
+            'Arabic', 'speedy', 'hippie', 'pundit', 'entice', 'marrow', 'denote', 'stitch', 'motion', 'loaded',
+            'resume', 'greasy', 'spiral', 'devoid', 'grieve', 'finale', 'quarry', 'burden', 'locale', 'manure',
+            'rustic', 'mantle', 'called', 'wreath', 'gloomy', 'wooded', 'amidst', 'molest', 'umpire', 'gothic',
+            'lagoon', 'buyout', 'scorer', 'temper', 'beware', 'wiring', 'pulpit', 'flinch', 'photon', 'racket',
+            'anyhow', 'rapist', 'errand', 'sucker', 'frying', 'kitten', 'remedy', 'driven', 'analog', 'rodent',
+            'parrot', 'minute', 'faulty', 'acquit', 'streak', 'emblem', 'homage', 'police', 'willow', 'savage',
+            'mashed', 'mantra', 'pickle', 'virgin', 'bubble', 'pardon', 'revert', 'bikini', 'grassy', 'bypass',
+            'steady', 'mosaic', 'ginger', 'coupon', 'unpaid', 'fluffy', 'vector', 'virgin', 'serene', 'minced',
+            'hearty', 'holler', 'taking', 'giggle', 'metric', 'dearly', 'rejoin', 'locked', 'innate', 'legion',
+            'kosher', 'cloudy', 'torque', 'savior', 'hacker', 'thrift', 'reflex', 'sealed', 'cradle', 'quaint',
+            'nigger', 'ascent', 'abuser', 'school', 'outlaw', 'smoked', 'squirm', 'beaten', 'winery', 'pantry',
+            'brandy', 'unused', 'wrench', 'tendon', 'stitch', 'zipper', 'detach', 'biopsy', 'sparse', 'beacon',
+            'gritty', 'saloon', 'curfew', 'orgasm', 'satire', 'bloody', 'behold', 'neural', 'sewing', 'junior',
+            'folded', 'scroll', 'parody', 'rebate', 'parade', 'neuron', 'rafter', 'finger', 'boldly', 'lotion',
+            'watery', 'derail', 'bumper', 'remake', 'pastel', 'ornate', 'edible', 'expend', 'Mormon', 'dispel',
+            'revere', 'wiggle', 'Shiite', 'bundle', 'kindly', 'hearth', 'cringe', 'climax', 'trudge', 'faucet',
+            'plunge', 'worthy', 'choral', 'fillet', 'biased', 'caring', 'paddle', 'kettle', 'saucer', 'gamble',
+            'attire', 'racing', 'clothe', 'picket', 'funnel', 'stated', 'thirst', 'flashy', 'funded', 'deport',
+            'ardent', 'relive', 'gobble', 'teller', 'murmur', 'boiler', 'ailing', 'unjust', 'strife', 'devout',
+            'primer', 'Hebrew', 'gutter', 'feeder', 'refund', 'dampen', 'hassle', 'quirky', 'flatly', 'shabby',
+            'warmly', 'trough', 'gladly', 'censor', 'dagger', 'sanity', 'throng', 'weight', 'fervor', 'veggie',
+            'shrewd', 'cavern', 'dugout', 'padded', 'scrape', 'hanger', 'bumper', 'refute', 'garner', 'richly',
+            'sinner', 'stroll', 'pebble', 'usable', 'raging', 'sliver', 'salute', 'swivel', 'forage', 'binary',
+            'sprout', 'tangle', 'inward', 'pricey', 'mentor', 'gaping', 'inland', 'afloat', 'galley', 'gossip',
+            'frigid', 'nibble', 'corpus', 'esteem', 'tinker', 'riding', 'madden', 'deduct', 'tandem', 'vulgar',
+            'ambush', 'creepy', 'birdie', 'kernel', 'button', 'incite', 'hamlet', 'stable', 'coerce', 'palate',
+            'rented', 'washer', 'insert', 'bidder', 'caveat', 'ravine', 'abduct', 'unpack', 'sitter', 'joyful',
+            'waking', 'seated', 'teeter', 'thrash', 'shaped', 'coward', 'unborn', 'barley', 'quiver', 'barbed',
+            'ration', 'saliva', 'troupe', 'Baltic', 'replay', 'surfer', 'outcry', 'budget', 'milieu', 'shaman',
+            'hugely', 'marine', 'stench', 'buckle', 'crutch', 'encode', 'violet', 'fiddle', 'fennel', 'tyrant',
+            'bounce', 'peddle', 'stormy', 'sprawl', 'spoken', 'tremor', 'tripod', 'petite', 'beggar', 'branch',
+            'caress', 'inland', 'riddle', 'weakly', 'thirds', 'wicker', 'squeal', 'junkie', 'double', 'hobble',
+            'shrink', 'breach', 'primal', 'better', 'utmost', 'fiance', 'beaver', 'bruise', 'baffle', 'bandit',
+            'nutmeg', 'ruined', 'saddle', 'wanted', 'exhale', 'pellet', 'helium', 'random', 'tether', 'allure',
+            'unruly', 'median', 'sprint', 'eschew', 'wither', 'solace', 'coding', 'ransom', 'fluent', 'subset',
+            'sludge', 'uphill', 'hourly', 'tamper', 'exempt', 'midway', 'exodus', 'untrue', 'bearer', 'rumble',
+            'Jesuit', 'rattle', 'chrome', 'ravage', 'polity', 'swerve', 'flower', 'sculpt', 'silver', 'clamor',
+            'latent', 'shrill', 'hangar', 'misuse', 'mythic', 'tuxedo', 'fender', 'gilded', 'parity', 'fresco',
+            'sexism', 'sexist', 'arcade', 'masked', 'wrench', 'gallop', 'burrow', 'morgue', 'lounge', 'rarity',
+            'biceps', 'onward', 'antler', 'earned', 'outfit', 'accrue', 'sesame', 'prized', 'hectic', 'tubing',
+            'litany', 'detour', 'retail', 'proton', 'incest', 'shadow', 'acting', 'joyous', 'ripple', 'grimly',
+            'wasted', 'strand', 'squeak', 'cement', 'feeble', 'bellow', 'enamel', 'sunken', 'casing', 'heyday',
+            'clinch', 'mayhem', 'airway', 'soaked', 'iconic', 'crayon', 'fiddle', 'hijack', 'negate', 'dosage',
+            'sadden', 'missed', 'ledger', 'dazzle', 'jargon', 'billow', 'defuse', 'savage', 'crotch', 'trance',
+            'dreamy', 'fungal', 'pounce', 'shriek', 'muzzle', 'tundra', 'Mormon', 'diving', 'spruce', 'suitor',
+            'hurtle', 'herald', 'captor', 'unreal', 'better', 'floppy', 'placid', 'potter', 'revoke', 'diving',
+            'rotary', 'steamy', 'vacate', 'melted', 'subdue', 'fright', 'sheath', 'loathe', 'wobble', 'replay',
+            'logger', 'Jesuit', 'glitch', 'stucco', 'antics', 'victor', 'binder', 'skewer', 'decree', 'butler',
+            'crease', 'uterus', 'sneeze', 'fiasco', 'lastly', 'mating', 'mutant', 'deftly', 'keenly', 'marina',
+            'classy', 'rustle', 'fondly', 'riddle', 'sullen', 'shiver', 'earthy', 'factor', 'schema', 'teapot',
+            'ambush', 'dreary', 'salted', 'refill', 'shroud', 'upside', 'fodder', 'gunner', 'hooded', 'listed',
+            'kicker', 'relish', 'damned', 'blazer', 'deluxe', 'poorly', 'guinea', 'drench', 'enrage', 'author',
+            'vagina', 'flimsy', 'cobalt', 'herein', 'uphill', 'tailor', 'porter', 'zombie', 'boiled', 'racing',
+            'untold', 'linked', 'buried', 'hiking', 'corner', 'drying', 'finder', 'Somali', 'astute', 'recoil',
+            'ordain', 'writhe', 'armpit', 'revamp', 'burned', 'uproar', 'candor', 'arcane', 'dredge', 'instil',
+            'winged', 'thorny', 'jostle', 'encase', 'mobile', 'blonde', 'crazed', 'mortal', 'asking', 'molten',
+            'hooker', 'deduce', 'inward', 'triple', 'pamper', 'doubly', 'waffle', 'Syrian', 'fumble', 'muffle',
+            'darkly', 'debtor', 'nozzle', 'banned', 'flaunt', 'payout', 'naming', 'veneer', 'siding', 'bustle',
+            'attune', 'Celtic', 'eerily', 'ruffle', 'fathom', 'mantel', 'purify', 'defect', 'upland', 'starch',
+            'rubric', 'rework', 'trivia', 'tiptoe', 'crusty', 'Creole', 'rowing', 'mellow', 'chunky', 'aching',
+            'weaver', 'porous', 'malice', 'vested', 'pelvis', 'piracy', 'sinful', 'unease', 'Apache', 'piping',
+            'coffer', 'brunch', 'rusted', 'cooker', 'alcove', 'shovel', 'spooky', 'strait', 'apathy', 'typing',
+            'misuse', 'recoup', 'stored', 'gloved', 'Apache', 'decode', 'Andean', 'pocket', 'Norman', 'nudity',
+            'father', 'safari', 'sickly', 'blurry', 'cortex', 'bellow', 'signed', 'abused', 'scrawl', 'retort',
+            'typify', 'remake', 'tattoo', 'jumble', 'fabled', 'stairs', 'madman', 'earner', 'unwind', 'phrase',
+            'medley', 'oddity', 'paying', 'shaded', 'biting', 'grainy', 'dearth', 'grudge', 'arched', 'mishap',
+            'chubby', 'scorch', 'boyish', 'accent', 'sherry', 'issuer', 'codify', 'mascot', 'buzzer', 'outlay',
+            'sorely', 'glazed', 'cranky', 'overdo', 'fidget', 'patent', 'domino', 'course', 'beaded', 'chives',
+            'hoarse', 'septic', 'vacuum', 'manned', 'lament', 'squash', 'frayed', 'repeal', 'caviar', 'cocoon',
+            'rosary', 'fading', 'mystic', 'anemia', 'cheers', 'pallet', 'tights', 'enigma', 'acidic', 'sporty',
+            'rebuff', 'renter', 'pepper', 'expert', 'turret', 'coolly', 'quasar', 'prompt', 'funnel', 'shaggy',
+            'heresy', 'liking', 'ingest', 'deride', 'maiden', 'saline', 'plenty', 'slouch', 'vortex', 'burrow',
+            'parked', 'wheeze', 'crispy', 'bushel', 'grocer', 'warily', 'utopia', 'frosty', 'peruse', 'shaker',
+            'looter', 'veiled', 'scribe', 'adrift', 'passer', 'prompt', 'tingle', 'unwise', 'lawful', 'tarmac',
+            'duffel', 'seethe', 'bistro', 'extant', 'cuddle', 'lander', 'coldly', 'nimble', 'labour', 'karate',
+            'befall', 'format', 'grouse', 'humble', 'turban', 'maroon', 'cinder', 'supple', 'throes', 'smelly',
+            'squirt', 'minnow', 'ranked', 'filler', 'intone', 'bleach', 'cheery', 'induct', 'bridal', 'pummel',
+            'Kenyan', 'Nordic', 'dabble', 'tycoon', 'blower', 'wobbly', 'brazen', 'Basque', 'retina', 'sentry',
+            'Trojan', 'outage', 'unduly', 'corral', 'eureka', 'fleshy', 'pelvic', 'absent', 'stocky', 'zealot',
+            'putter', 'violet', 'shroud', 'jingle', 'eatery', 'radish', 'nectar', 'poplar', 'wallow', 'steely',
+            'sonnet', 'potted', 'slalom', 'furrow', 'waving', 'fixate', 'pained', 'stuffy', 'loafer', 'hiatus',
+            'maniac', 'annual', 'elated', 'errant', 'warped', 'blight', 'omelet', 'bicker', 'bemoan', 'clique',
+            'savory', 'bonnet', 'piston', 'obsess', 'valued', 'serial', 'musket', 'bubbly', 'pueblo', 'goalie',
+            'scotch', 'hushed', 'recast', 'poodle', 'potion', 'airman', 'refuel', 'maiden', 'uptown', 'slider',
+            'pander', 'turnip', 'boater', 'avenge', 'unfurl', 'pulsar', 'pissed', 'locust', 'mousse', 'kindly',
+            'queasy', 'huddle', 'gurney', 'exhort', 'picker', 'Quaker', 'atrium', 'laurel', 'awning', 'urchin',
+            'grisly', 'Briton', 'hopper', 'Yoruba', 'phobia', 'babble', 'bleach', 'fisher', 'volley', 'broach',
+            'sleazy', 'airing', 'relent', 'regent', 'luster', 'azalea', 'barter', 'busily', 'iodine', 'rocket',
+            'breezy', 'artful', 'reborn', 'stubby', 'twitch', 'anoint', 'stanza', 'siphon', 'spoils', 'carver',
+            'glassy', 'malady', 'jiggle', 'syntax', 'hunker', 'grease', 'morbid', 'stymie', 'inflow', 'talker',
+            'morsel', 'hubris', 'bazaar', 'bottle', 'sickle', 'waning', 'resell', 'lichen', 'sultry', 'nugget',
+            'herald', 'reggae', 'leeway', 'grille', 'fickle', 'mosaic', 'broker', 'cheesy', 'fleece', 'purist',
+            'canine', 'jigsaw', 'deceit', 'Balkan', 'shelve', 'paltry', 'binary', 'berate', 'baboon', 'dismay',
+            'giving', 'hustle', 'zenith', 'reheat', 'pulley', 'acuity', 'payday', 'tumble', 'assail', 'starry',
+            'feisty', 'Somali', 'falcon', 'mirage', 'fatten', 'smudge', 'hiding', 'router', 'refuse', 'dammit',
+            'noodle', 'kennel', 'sizzle', 'mellow', 'invert', 'fetish', 'depose', 'tiring', 'layman', 'psycho',
+            'jogger', 'divine', 'twinge', 'hostel', 'lumber', 'assent', 'bottom', 'crease', 'tanned', 'censor',
+            'exiled', 'bereft', 'taxing', 'motley', 'backup', 'touchy', 'winter', 'sordid', 'kimono', 'papaya',
+            'plenty', 'doomed', 'agreed', 'lazily', 'tryout', 'deluge', 'detest', 'woolly', 'mutate', 'dialog',
+            'redden', 'squawk', 'squeak', 'trying', 'canola', 'litmus', 'beeper', 'caress', 'feudal', 'goblet',
+            'spying', 'reload', 'sultan', 'mutiny', 'Labour', 'squeal', 'radial', 'intern', 'ration', 'trifle',
+            'tidbit', 'fondle', 'landed', 'raider', 'glider', 'wearer', 'matron', 'orally', 'tinted', 'blanch',
+            'fixing', 'Libyan', 'clover', 'avatar', 'frugal', 'rusher', 'rudder', 'kindle', 'mitten', 'rising',
+            'abject', 'roving', 'quartz', 'eraser', 'lavish', 'amends', 'dimple', 'woolen', 'upload', 'careen',
+            'geyser', 'repent', 'forage', 'Slavic', 'brooch', 'outrun', 'archer', 'spotty', 'meddle', 'resale',
+            'hairdo', 'deacon', 'micron', 'script', 'sleigh', 'voodoo', 'spruce', 'legume', 'clamor', 'elapse',
+            'dollop', 'astray', 'tirade', 'walled', 'haggle', 'ramble', 'craggy', 'halter', 'framer', 'dainty',
+            'forged', 'sender', 'choppy', 'ablaze', 'retake', 'caddie', 'sneaky', 'khakis', 'mister', 'hermit',
+            'justly', 'chisel', 'yearly', 'distil', 'garish', 'washed', 'condor', 'mighty', 'digger', 'shoddy',
+            'drowsy', 'Quaker', 'corona', 'retard', 'bowler', 'uptown', 'uplift', 'sunlit', 'smudge', 'busted',
+            'aghast', 'enmity', 'cicada', 'vilify', 'fiesta', 'distal', 'rinsed', 'ouster', 'cognac', 'behest',
+            'herpes', 'weasel', 'cystic', 'carpet', 'jurist', 'purple', 'dictum', 'seeing', 'afield', 'mystic',
+            'alight', 'fruity', 'corset', 'pester', 'rebuke', 'weekly', 'musing', 'snappy', 'hotbed', 'tunnel',
+            'barrel', 'genial', 'horrid', 'forego', 'enamor', 'catchy', 'whisky', 'retool', 'upshot', 'mating',
+            'oeuvre', 'staple', 'unwrap', 'homely', 'quiver', 'banter', 'seaman', 'inlaid', 'delude', 'grumpy',
+            'bygone', 'peeled', 'redraw', 'welder', 'tiptoe', 'octave', 'buffet', 'mallet', 'maggot', 'sizzle',
+            'skimpy', 'excise', 'pariah', 'adjoin', 'teacup', 'zigzag', 'anemic', 'patina', 'demean', 'infest',
+            'chaser', 'debunk', 'buffer', 'unseat', 'unkind', 'grotto', 'dotted', 'feared', 'sicken', 'secede',
+            'scheme', 'bluish', 'breech', 'rolled', 'snugly', 'eulogy', 'homily', 'whence', 'rustle', 'downed',
+            'climax', 'mildew', 'silken', 'waddle', 'assist', 'nuzzle', 'acumen', 'fizzle', 'tumult', 'scroll',
+            'midget', 'molded', 'pathos', 'nettle', 'urging', 'paving', 'cougar', 'beater', 'indigo', 'yuppie',
+            'vandal', 'schism', 'accede', 'ripped', 'pliers', 'frothy', 'tuning', 'libido', 'dioxin', 'uptake',
+            'chisel', 'Scotch', 'hoopla', 'rebuke', 'pimple', 'cobble', 'orator', 'emigre', 'goatee', 'hiccup',
+            'collie', 'haunch', 'rancid', 'furrow', 'medial', 'encore', 'upkeep', 'gazebo', 'demote', 'timbre',
+            'sorbet', 'cobweb', 'jockey', 'sequin', 'shanty', 'groggy', 'loader', 'wiggle', 'behead', 'civics',
+            'fallow', 'muscle', 'pucker', 'parody', 'misfit', 'rabies', 'tested', 'behind', 'duplex', 'except',
+            'parlay', 'settee', 'dilate', 'second', 'shaved', 'rooted', 'powder', 'doable', 'tamale', 'duster',
+            'dapper', 'tracer', 'auburn', 'glitzy', 'hollow', 'pearly', 'herder', 'evince', 'zigzag', 'Nazism',
+            'hamper', 'amulet', 'gambit', 'divest', 'cranny', 'skewed', 'stingy', 'glower', 'crafty', 'humbly',
+            'unholy', 'jaunty', 'ticker', 'soiled', 'effigy', 'renege', 'damper', 'sugary', 'Aussie', 'spleen',
+            'hauler', 'fucker', 'burlap', 'menial', 'angled', 'pointy', 'Moslem', 'gallop', 'cachet', 'sortie',
+            'spirit', 'renown', 'whilst', 'endear', 'unmask', 'raptor', 'salami', 'repute', 'coddle', 'hereby',
+            'revolt', 'docket', 'canine', 'lumbar', 'smarts', 'plural', 'nicety', 'rudely', 'uproot', 'raiser',
+            'stasis', 'granny', 'spongy', 'pacify', 'waffle', 'goblin', 'occult', 'ringer', 'poncho', 'muddle',
+            'season', 'brewer', 'iguana', 'Sabine', 'docile', 'kitsch', 'swivel', 'unhook', 'venous', 'wanton',
+            'accost', 'bodice', 'dogged', 'copier', 'python', 'piazza', 'jaguar', 'cackle', 'pewter', 'bridle',
+            'keypad', 'steppe', 'opiate', 'visage', 'quench', 'trusty', 'punter', 'cajole', 'wintry', 'mangle',
+            'patter', 'Mojave', 'butter', 'weevil', 'enjoin', 'repose', 'elixir', 'pickle', 'splice', 'sundae',
+            'consul', 'doings'
+        ];
+        undoublearr = ["tailor", "wicked", "chaser", "hostel", "jumper", "glance", "gospel", "goblin", "widely",
+            "dragon", "polish", "course", "burden", "bundle", "Danish", "launch", "stifle", "ascent", "framed",
+            "travel", "unload", "docile", "buckle", "valued", "pricey", "income", "revamp", "forage", "curved",
+            "eulogy", "fiance", "fruity", "frugal", "profit", "frozen", "beyond", "caring", "humble", "stroke",
+            "sickly", "forest", "resign", "quirky", "waving", "notice", "square", "nicely", "depict", "sprint",
+            "anthem", "French", "runway", "warmly", "bumper", "myself", "lumber", "lyrics", "inform", "fumble",
+            "stride", "grumpy", "stigma", "steamy", "blonde", "purely", "honest", "hockey", "untold", "fleshy",
+            "sorely", "hairdo", "policy", "feisty", "swivel", "corpus", "course", "famine", "rinsed", "fathom",
+            "climax", "wisdom", "budget", "enigma", "switch", "clamor", "menial", "lavish", "doubly", "invert",
+            "backup", "sodium", "greasy", "wonder", "paving", "parcel", "permit", "ration", "ticker", "ascend",
+            "clergy", "update", "chosen", "barely", "patrol", "shower", "powder", "joyful", "virtue", "purity",
+            "rabies", "hiatus", "tundra", "impose", "fairly", "racket", "stroke", "surely", "flawed", "dimple",
+            "payout", "design", "steady", "square", "spring", "flying", "peanut", "injury", "remind", "cradle",
+            "chapel", "sludge", "charge", "shiver", "medial", "shrink", "Mojave", "atomic", "shroud", "marble",
+            "finger", "single", "unable", "modern", "export", "homily", "strand", "author", "deport", "misery",
+            "artful", "halter", "dilate", "sacred", "pantry", "sitcom", "Quaker", "snatch", "reason", "uptown",
+            "bleach", "fabric", "abduct", "unfold", "strike", "wanted", "pointy", "feudal", "sniper", "sorbet",
+            "branch", "margin", "baking", "racist", "mental", "whilst", "upload", "pucker", "easily", "toward",
+            "fringe", "outlaw", "buying", "motive", "faster", "tumble", "trifle", "spiral", "simple", "behind",
+            "ranked", "second", "upward", "amused", "flinch", "guitar", "native", "packed", "sprawl", "cruise",
+            "abused", "sugary", "wrench", "pastry", "direct", "bronze", "comedy", "master", "gothic", "touchy",
+            "govern", "median", "insert", "rocket", "shrine", "closet", "random", "ground", "figure", "covert",
+            "frying", "dismal", "queasy", "cringe", "nicety", "bestow", "morsel", "stable", "bishop", "amidst",
+            "number", "chrome", "jungle", "losing", "finale", "subtly", "musing", "spruce", "squirm", "patron",
+            "visual", "jurist", "unpaid", "single", "amount", "timbre", "partly", "tackle", "banish", "herald",
+            "pliers", "plaque", "slight", "unwise", "client", "grimly", "mystic", "orphan", "single", "casket",
+            "double", "herald", "Jesuit", "armpit", "shaker", "casino", "phrase", "script", "sprint", "biased",
+            "survey", "detach", "guinea", "obtain", "Polish", "United", "hacker", "Sabine", "fumble", "engulf",
+            "serial", "wither", "urgent", "breach", "loving", "advice", "Briton", "micron", "mentor", "notify",
+            "litmus", "golden", "insure", "budget", "almost", "pastel", "minute", "tinker", "shovel", "acting",
+            "itself", "market", "Nordic", "unlock", "nature", "alcove", "mating", "factor", "marked", "coward",
+            "strife", "ordain", "shriek", "masked", "molten", "father", "bistro", "carpet", "richly", "finely",
+            "bluish", "expand", "ransom", "jumble", "unlike", "sliced", "piston", "starve", "nearby", "sporty",
+            "watery", "steady", "stingy", "sewing", "admire", "period", "format", "abrupt", "signal", "typing",
+            "eighty", "gamble", "hybrid", "clause", "crying", "influx", "bandit", "falcon", "salute", "person",
+            "unveil", "locker", "darken", "warmth", "wonder", "burned", "wrench", "plague", "hunter", "silent",
+            "thirds", "bicker", "mentor", "market", "antler", "pocket", "pencil", "inflow", "shield", "absent",
+            "marvel", "behalf", "goblet", "solemn", "hybrid", "orange", "viable", "safety", "savior", "vector",
+            "damper", "acting", "aspect", "winter", "candor", "insert", "drying", "cousin", "social", "erotic",
+            "answer", "tubing", "sticky", "pastor", "squeak", "unholy", "figure", "closer", "permit", "injure",
+            "fridge", "ground", "banker", "outing", "chives", "polite", "morale", "crayon", "holder", "backup",
+            "adrift", "kosher", "shovel", "tribal", "keypad", "bright", "folder", "tuxedo", "fiasco", "raised",
+            "shrewd", "exhort", "cradle", "anchor", "uptake", "lichen", "pundit", "ration", "doable", "ruined",
+            "twinge", "quench", "hoarse", "climax", "forged", "enlist", "intake", "racism", "cortex", "frosty",
+            "beacon", "legion", "shadow", "player", "ruling", "string", "darkly", "jingle", "antics", "Syrian",
+            "upland", "amount", "humble", "sinful", "kitsch", "trying", "dreamy", "pounce", "punish", "answer",
+            "object", "skimpy", "shrimp", "rowing", "novice", "filter", "socket", "linked", "oyster", "dilute",
+            "debris", "sprout", "thanks", "exodus", "convey", "slouch", "square", "cobalt", "stream", "parish",
+            "heroin", "ramble", "tanker", "lawyer", "burlap", "rejoin", "uptown", "blower", "hurtle", "thread",
+            "clumsy", "module", "worthy", "unreal", "beckon", "mosaic", "hurdle", "asking", "humane", "mashed",
+            "dismay", "police", "nearby", "subtle", "hauler", "shaved", "lesion", "charge", "sentry", "growth",
+            "spoken", "mobile", "ground", "impart", "timely", "design", "metric", "phrase", "hustle", "embark",
+            "pickle", "beyond", "lizard", "abound", "exotic", "danger", "mighty", "earthy", "worthy", "proven",
+            "bridal", "rusted", "adjust", "turnip", "German", "choral", "behold", "silken", "rental", "layout",
+            "poetry", "violet", "faucet", "denial", "corpse", "hermit", "seldom", "schema", "preach", "washed",
+            "melody", "ratify", "nectar", "direct", "carbon", "object", "breach", "bushel", "winged", "forage",
+            "Korean", "walnut", "racing", "rating", "thinly", "result", "tirade", "mystic", "sector", "public",
+            "prison", "throes", "strain", "search", "mostly", "quartz", "muster", "embody", "normal", "jockey",
+            "upshot", "recoup", "saving", "blanch", "sponge", "pirate", "employ", "sturdy", "unrest", "island",
+            "tickle", "outage", "spring", "Jewish", "taxing", "makeup", "detain", "muscle", "parked", "escort",
+            "chisel", "mature", "codify", "dosage", "python", "sunlit", "inhale", "saline", "source", "garish",
+            "thrive", "bridge", "sequin", "homage", "kidney", "enough", "buckle", "modest", "rumble", "urchin",
+            "triple", "editor", "duster", "packet", "priest", "custom", "Somali", "corset", "flower", "bakery",
+            "bygone", "asylum", "German", "master", "hungry", "umpire", "marvel", "squint", "psyche", "signed",
+            "linger", "manure", "midget", "zenith", "flower", "blight", "coping", "flavor", "Jesuit", "spongy",
+            "drench", "strong", "amends", "wizard", "retain", "broach", "pander", "racing", "detour", "chorus",
+            "launch", "absurd", "creamy", "biopsy", "coming", "linear", "lounge", "binder", "paltry", "kindly",
+            "deploy", "strike", "spying", "insect", "trance", "loader", "pelvic", "friend", "turkey", "tumble",
+            "anyhow", "tandem", "softly", "betray", "ornate", "parody", "hinder", "gently", "portal", "inmate",
+            "purify", "bruise", "column", "dangle", "junior", "teacup", "unfair", "symbol", "tingle", "wisely",
+            "survey", "campus", "escort", "foster", "morbid", "midway", "squawk", "coding", "plenty", "sweaty",
+            "soaked", "wintry", "goalie", "mainly", "liquor", "skater", "poster", "torque", "tricky", "sculpt",
+            "tragic", "staple", "lounge", "making", "cajole", "safely", "pastel", "washer", "listen", "retina",
+            "public", "retail", "vendor", "streak", "overly", "matron", "praise", "advise", "ritual", "brazen",
+            "replay", "branch", "openly", "loathe", "arched", "hearty", "harden", "hatred", "sultan", "crafty",
+            "consul", "sleazy", "bundle", "cinder", "casing", "tangle", "boiled", "alpine", "citrus", "shield",
+            "relish", "sample", "revolt", "search", "script", "devour", "Slavic", "eating", "dearly", "bridle",
+            "silver", "stymie", "confer", "submit", "venous", "soften", "jacket", "inward", "triple", "tavern",
+            "donkey", "tamper", "mobile", "adjoin", "reckon", "clique", "shanty", "reason", "failed", "depart",
+            "justly", "bemoan", "Syrian", "median", "quiver", "spread", "minced", "anchor", "length", "warped",
+            "backer", "divert", "digest", "fidget", "double", "stocky", "active", "should", "victor", "squirt",
+            "tackle", "fading", "bodily", "refund", "export", "browse", "waking", "impact", "couple", "writhe",
+            "plague", "turban", "scream", "upward", "French", "neatly", "stupid", "sortie", "reload", "sleigh",
+            "stench", "random", "picket", "sultry", "absent", "frothy", "dismay", "amulet", "loafer", "lineup",
+            "onward", "mister", "plight", "somber", "camper", "cavern", "dearth", "broken", "helium", "weight",
+            "muscle", "fusion", "zealot", "method", "chisel", "guilty", "cruise", "moving", "golfer", "second",
+            "scrape", "bridge", "biceps", "senior", "carved", "donate", "salute", "kidnap", "tripod", "deftly",
+            "filter", "detail", "brutal", "nebula", "postal", "handle", "detail", "credit", "soiled", "scrawl",
+            "flight", "herbal", "thread", "trendy", "stripe", "credit", "rodent", "formal", "uphold", "weight",
+            "flashy", "genial", "prince", "blonde", "finger", "humbly", "sundae", "agency", "lander", "region",
+            "morgue", "suitor", "jargon", "shadow", "grainy", "placid", "frenzy", "stored", "behind", "patrol",
+            "marine", "burial", "hourly", "retail", "equity", "closed", "garden", "spread", "during", "glance",
+            "signal", "change", "uneasy", "atrium", "sickle", "swivel", "timber", "bodice", "hotbed", "canopy",
+            "sprawl", "clothe", "around", "forced", "winery", "invade", "smoker", "prized", "mother", "quaint",
+            "stolen", "perish", "angler", "salmon", "parity", "warden", "gloved", "pigeon", "spruce", "glazed",
+            "pistol", "switch", "family", "police", "upside", "candle", "travel", "streak", "belong", "trophy",
+            "unpack", "knight", "barley", "gamble", "sermon", "malice", "mighty", "shroud", "poetic", "afield",
+            "ignore", "mingle", "maiden", "debunk", "enmity", "boring", "mutiny", "pocket", "trough", "orgasm",
+            "pacify", "syntax", "molest", "famous", "chunky", "carton", "starch", "driven", "heroic", "plunge",
+            "squeal", "volume", "cranky", "worsen", "castle", "sketch", "dialog", "Baltic", "mishap", "winter",
+            "burden", "county", "unlike", "gazebo", "scared", "double", "kindle", "mosque", "hardly", "siphon",
+            "shower", "wasted", "marine", "sicken", "meadow", "tangle", "studio", "bowler", "fourth", "varied",
+            "spinal", "slogan", "embryo", "felony", "jockey", "violet", "litany", "singer", "fabled", "locate",
+            "homely", "revolt", "pathos", "deputy", "glitch", "native", "foster", "minute", "spiral", "string",
+            "vastly", "ardent", "usable", "flimsy", "glitzy", "jigsaw", "censor", "warily", "junkie", "hamlet",
+            "fisher", "utopia", "disarm", "boxing", "banter", "gambit", "superb", "hustle", "senior", "labour",
+            "stormy", "throne", "change", "regain", "notice", "powder", "dental", "verbal", "number", "debtor",
+            "combat", "mosaic", "lumbar", "course", "smoked", "grouse", "strain", "octave", "pardon", "entail",
+            "faulty", "bunker", "visage", "caring", "inward", "forbid", "bruise", "gravel", "slider", "nickel",
+            "matrix", "cougar", "orchid", "solace", "dainty", "crispy", "compel", "oxygen", "saying", "filthy",
+            "boyish", "hunger", "clamor", "fresco", "vanity", "nimble", "forget", "sneaky", "daring", "riches",
+            "hasten", "albeit", "pearly", "waiter", "Korean", "replay", "carpet", "pueblo", "brandy", "hunker",
+            "recast", "insult", "around", "taking", "mantel", "parole", "infest", "lament", "binary", "mascot",
+            "Trojan", "pelvis", "costly", "couple", "ethnic", "kindly", "throng", "whisky", "sliver", "dating",
+            "sexual", "locust", "ponder", "serial", "action", "rocket", "parody", "hubris", "induct", "author",
+            "verify", "musket", "pulsar", "tongue", "rapist", "squeal", "aching", "enough", "firmly", "bounty",
+            "distal", "scrape", "format", "troupe", "praise", "salted", "staple", "bleach", "ravine", "robust",
+            "dampen", "sprout", "ruling", "subway", "walker", "Latino", "recoil", "purist", "fiscal", "fluent",
+            "yogurt", "optics", "wealth", "cloudy", "savory", "finder", "incest", "vulgar", "flaunt", "others",
+            "nearly", "cavity", "myriad", "Yoruba", "vortex", "falter", "roving", "comply", "plenty", "factor",
+            "triple", "ordeal", "weapon", "namely", "thorny", "squeak", "strand", "Labour", "awhile", "devout",
+            "infect", "trench", "deacon", "handle", "unsafe", "jostle", "sample", "dancer", "gather", "neural",
+            "import", "angled", "magnet", "Somali", "ambush", "pained", "bustle", "duplex", "lumber", "Quaker",
+            "cinema", "father", "punter", "mating", "cartel", "orient", "fondly", "busily", "fasten", "weakly",
+            "Soviet", "Libyan", "crazed", "silver", "lament", "autism", "junior", "phobia", "almond", "unseat",
+            "Nazism", "nutmeg", "stream", "polish", "stride", "radish", "enrich", "busted", "basket", "gurney",
+            "import", "clover", "bumper", "inject", "legacy", "beauty", "bounce", "butler", "flying", "abject",
+            "coming", "unmask", "abuser", "fondle", "slower", "mildew", "charge", "sketch", "outlay", "smudge",
+            "captor", "flavor", "outcry", "breast", "sailor", "jaunty", "invest", "curfew", "orange", "ingest",
+            "ashore", "oblige", "acuity", "acquit", "hugely", "dictum", "ambush", "theirs", "rumble", "stance",
+            "mirage", "advent", "fungal", "insult", "Soviet", "fiesta", "trudge", "wicker", "blouse", "ouster",
+            "infuse", "fucker", "drowsy", "satire", "genius", "coarse", "shiver", "plunge", "breath", "locked",
+            "upbeat", "luster", "mortal", "futile", "behind", "listed", "scribe", "simply", "mantle", "maiden",
+            "snugly", "spider", "talker", "shared", "boiler", "spiral", "opiate", "rancid", "saucer", "nudity",
+            "fickle", "waiver", "second", "induce", "fetish", "blazer", "wander", "mangle", "rustle", "motley",
+            "pickle", "aspire", "primal", "vanish", "rustle", "plenty", "radius", "diaper", "dispel", "frayed",
+            "mortal", "ethics", "behalf", "monkey", "unwrap", "podium", "fixate", "sanity", "grisly", "theory",
+            "garlic", "impact", "sucker", "divest", "hamper", "voyage", "acumen", "public", "arouse", "psycho",
+            "hanger", "piracy", "paying", "combat", "fright", "double", "domain", "update", "scream", "profit",
+            "censor", "anemic", "lavish", "bounce", "binary", "doings", "glower", "pardon", "glider", "quiver",
+            "boater", "relish", "rudely", "zombie", "septic", "alight", "smudge", "wreath", "docket", "strive",
+            "derail", "stable", "outlaw", "picker", "copier", "mythic", "crusty", "tailor", "shrink", "hijack",
+            "shaped", "gifted", "invoke", "parent", "planet", "Basque", "rustic", "bother", "mature", "hamper",
+            "splice", "polity", "ritual", "result", "shriek", "bucket", "enamor", "voting", "opaque", "modify",
+            "uplift", "buried", "racist", "remain", "brunch"
+        ]
+        var countnum = 0;
+        var cletter = 0
+        let rannum = Math.floor(Math.random() * 1444)
+        let inputarr = document.getElementsByClassName('inp')
+
+        var firstwechat = new Date('2021/04/09/23:36').getTime();
+        var nowtime = new Date();
+        var firstdays = nowtime.getTime() - firstwechat,
+            days = parseInt(firstdays / (1000 * 60 * 60 * 24));
+        console.log(days)
+
+        var world = undoublearr[days - 313]
+
+        // function shuffle(arr){
+        //     let i = arr.length;
+        //     while (i) {
+        //         let j = Math.floor(Math.random() * i --);
+        //         [arr[j],arr[i]] = [arr[i],arr[j]];
+        //     }
+        //     return arr;
+        // }
+        // shuffle(undoublearr);
+        // console.log(undoublearr,'没重复')
+
+        world = world.toLowerCase()
+        let worldarr = world.split('')
+        var reg = /^[A-Za-z]/;
+
+        for (let i = 0; i < 6; i++) {
+            inputarr[i].addEventListener('keyup', function (e) {
+                // 输入字母后跳到下一个
+                if (i != 5) {
+                    if (reg.test(inputarr[i].value)) {
+                        if (inputarr[i + 1].value == '') {
+                            inputarr[i + 1].focus()
+                        }
+                    }
+                }
+                // 删除键删除上一个input
+                if (i != 0) {
+                    if (inputarr[i].value == '') {
+                        if (e.keyCode == 8) {
+                            inputarr[i - 1].value = ''
+                            inputarr[i - 1].focus()
+                        }
+                    }
+                }
+
+
+            })
+        }
+        // 查询字母重复的单词
+        // let unchongfuarr = []
+        // warr.forEach(ele => {
+        //     if(isIsogram2(ele)){
+        //         unchongfuarr.push(ele)
+        //     }
+        // })
+        // console.log(unchongfuarr,'没重复')
+        // function isIsogram2(str) {
+        //     return !/(.).*\1/i.test(str);
+        // }
+
+        // function nextinput(ind) {
+
+        // }
+
+        function befocus(ind) {
+            inputarr[ind - 1].value = ''
+        }
+        document.getElementById('consern').addEventListener('touchstart',concer,false)
+        document.getElementById('consern').addEventListener('click',concer,false)
+         function concer (e) {
+             console.log(e, 'console')
+            // navigator.vibrate(1000);
+            cletter = 0;
+            let correctworld = false
+            let enterworld = ''
+            for (let i = 0; i < 6; i++) {
+                enterworld += inputarr[i].value
+            }
+            undoublearr.forEach(ele => {
+                if (ele.toLowerCase() == enterworld) {
+                    correctworld = true;
+                }
+            })
+            
+           
+            if (!correctworld) {
+                // span.innerHTML = '请输入正确的单词';
+                alert('请输入正确的world!!')
+            } else {
+                for (let i = 0; i < 6; i++) {
+                    deal(inputarr[i].value, worldarr[i])
+                    inputarr[i].value = ''
+                }
+                countnum++
+                let div = document.getElementById("con");
+                let span = document.createElement("div");
+                div.appendChild(span);
+            }
+            
+            if (cletter == 6) {
+                alert('答对了!!!!!')
+            } else {
+                console.log(world, cletter)
+                if (countnum == 5) {
+                    alert('很遗憾5次机会用尽了，这个单词是' + world)
+                }
+            }
+        }
+
+        function deal(invalue, num) {
+            let div = document.getElementById("con");
+            let span = document.createElement("span");
+            if (invalue == num) {
+                cletter++
+                span.className = "true"
+                let keyword = document.getElementById(invalue)
+                keyword.style.backgroundColor = "#67C23A"
+            } else {
+                let ifhave = false
+                worldarr.forEach(ele => {
+                    if (invalue == ele) {
+                        span.className = "have"
+                        let keyword = document.getElementById(invalue)
+                        keyword.style.backgroundColor = "#E6A23C"
+                        ifhave = true
+                    }
+                })
+                if (!ifhave) {
+                    span.className = "unhave"
+                    let keyword = document.getElementById(invalue)
+                    keyword.style.backgroundColor = "#F56C6C"
+                }
+            }
+            span.innerHTML = invalue;
+            div.appendChild(span);
+        }
+    </script>
+</body>
+
+</html>
