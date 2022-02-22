@@ -1517,7 +1517,6 @@ export default {
         "remain",
         "brunch",
       ],
-
       rightletter: 0,
       inputarr: [], //input 数组
       world: "",
@@ -1526,13 +1525,11 @@ export default {
   },
   created() {
     this.inputarr = document.getElementsByClassName("inp");
-
     let firstwechat = new Date("2021/04/09/23:36").getTime();
     let nowtime = new Date();
     let firstdays = nowtime.getTime() - firstwechat,
       days = parseInt(firstdays / (1000 * 60 * 60 * 24));
     this.world = this.undoublearr[days - 312].toLowerCase();
-
     this.letterarr = this.world.split("");
   },
   methods: {
@@ -1566,7 +1563,6 @@ export default {
       for (let i = 0; i < 6; i++) {
         enterWorld += this.inputarr[i].value;
       }
-
       this.undoublearr.forEach((ele) => {
         if (ele.toLowerCase() == enterWorld) {
           ifInWorldArr = true;
@@ -1580,13 +1576,11 @@ export default {
         }
       } else {
         this.enterarr.push(enterWorld);
-        console.log(this.enterarr.length , 'lenght')
         for (let i = 0; i < 6; i++) {
           this.deal(this.inputarr[i].value, this.letterarr[i]);
           this.inputarr[i].value = "";
         }
       }
-
       if (this.rightletter == 6) {
         alert("答对了");
       } else {
@@ -1595,23 +1589,21 @@ export default {
         }
       }
     },
-
     deal(invalue, num) {
+       let keyword = document.getElementById(invalue);
+       alert(keyword)
       if (invalue == num) {
         this.rightletter++;
-        let keyword = document.getElementById(invalue);
         keyword.style.backgroundColor = "#67C23A";
       } else {
         let ifhave = false;
         this.letterarr.forEach((ele) => {
           if (invalue == ele) {
-            let keyword = document.getElementById(invalue);
             keyword.style.backgroundColor = "#E6A23C";
             ifhave = true;
           }
         });
         if (!ifhave) {
-          let keyword = document.getElementById(invalue);
           keyword.style.backgroundColor = "#F56C6C";
         }
       }
@@ -1627,7 +1619,7 @@ export default {
   margin-bottom: 7px;
 }
 
-.let {
+.row span {
   margin: 0 5px;
   display: inline-block;
   height: 35px;
@@ -1657,8 +1649,7 @@ export default {
   border-radius: 8px;
 }
 
-.butt,
-.myform {
+.butt {
   display: flex;
   justify-content: center;
 }
