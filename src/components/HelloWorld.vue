@@ -1583,7 +1583,7 @@ export default {
         console.log(this.enterarr.length , 'lenght')
         for (let i = 0; i < 6; i++) {
           this.deal(this.inputarr[i].value, this.letterarr[i]);
-          // this.inputarr[i].value = "";
+          this.inputarr[i].value = "";
         }
       }
 
@@ -1646,7 +1646,7 @@ export default {
 }
 
 .inp {
-  display: inline-block;
+  /* display: inline-block; */
   flex-grow: 0;
   width: 35px;
   height: 35px;
