@@ -1591,19 +1591,22 @@ export default {
     },
     deal(invalue, num) {
        let keyword = document.getElementById(invalue);
-       alert(keyword)
+      
       if (invalue == num) {
         this.rightletter++;
-        keyword.style.backgroundColor = "#67C23A";
+        keyword.setAttribute('style', 'background:#67C23A')
+        // keyword.style.backgroundColor = "#67C23A";
       } else {
         let ifhave = false;
         this.letterarr.forEach((ele) => {
           if (invalue == ele) {
-            keyword.style.backgroundColor = "#E6A23C";
-            ifhave = true;
+            keyword.setAttribute('style', 'background:#E6A23C')
+            // keyword.style.backgroundColor = "#E6A23C";
+            // ifhave = true;
           }
         });
         if (!ifhave) {
+            keyword.setAttribute('style', 'background:#F56C6C')
           keyword.style.backgroundColor = "#F56C6C";
         }
       }
@@ -1619,7 +1622,7 @@ export default {
   margin-bottom: 7px;
 }
 
-.row span {
+#row span {
   margin: 0 5px;
   display: inline-block;
   height: 35px;
@@ -1649,7 +1652,7 @@ export default {
   border-radius: 8px;
 }
 
-.butt {
+.butt ,.myform{
   display: flex;
   justify-content: center;
 }
