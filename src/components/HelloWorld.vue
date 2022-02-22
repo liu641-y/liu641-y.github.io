@@ -51,11 +51,13 @@
     <div class="butt">
       <button @click="def()" class="confirm">确定</button>
     </div>
-    <div v-for="(wor,index) in enterarr" :key="index">
-      <span  v-for="(t, ind) in wor" :key="ind + 1">
-        <span v-if="t == world[ind]" class="downlet true">{{t}}</span>
-        <span v-else-if="world.indexOf(t) != -1" class="downlet have">{{t}}</span>
-        <span v-else class="downlet unhave">{{t}}</span>
+    <div v-for="(wor, index) in enterarr" :key="index">
+      <span v-for="(t, ind) in wor" :key="ind + 1">
+        <span v-if="t == world[ind]" class="downlet true">{{ t }}</span>
+        <span v-else-if="world.indexOf(t) != -1" class="downlet have">{{
+          t
+        }}</span>
+        <span v-else class="downlet unhave">{{ t }}</span>
       </span>
     </div>
   </div>
@@ -1523,7 +1525,6 @@ export default {
     };
   },
   created() {
-    // let rannum = Math.floor(Math.random() * 1444);
     this.inputarr = document.getElementsByClassName("inp");
 
     let firstwechat = new Date("2021/04/09/23:36").getTime();
@@ -1531,7 +1532,7 @@ export default {
     let firstdays = nowtime.getTime() - firstwechat,
       days = parseInt(firstdays / (1000 * 60 * 60 * 24));
     this.world = this.undoublearr[days - 312].toLowerCase();
-    // this.world = this.world.toLowerCase()
+
     this.letterarr = this.world.split("");
   },
   methods: {
@@ -1566,7 +1567,6 @@ export default {
         enterWorld += this.inputarr[i].value;
       }
 
-      this.enterarr.push(enterWorld);
       this.undoublearr.forEach((ele) => {
         if (ele.toLowerCase() == enterWorld) {
           ifInWorldArr = true;
@@ -1575,41 +1575,46 @@ export default {
       if (!ifInWorldArr) {
         alert("请输入正确的单词");
         navigator.vibrate(1000); // 手机震动
-      } else {
         for (let i = 0; i < 6; i++) {
-          this.deal(this.inputarr[i].value, this.letterarr[i]);
           this.inputarr[i].value = "";
         }
+      } else {
+        this.enterarr.push(enterWorld);
+        console.log(this.enterarr.length , 'lenght')
+        for (let i = 0; i < 6; i++) {
+          this.deal(this.inputarr[i].value, this.letterarr[i]);
+          // this.inputarr[i].value = "";
+        }
       }
-    
+
       if (this.rightletter == 6) {
         alert("答对了");
       } else {
         if (this.enterarr.length == 5) {
-          alert("很遗憾5次机会用尽了，这个单词是" + world);
+          alert("很遗憾5次机会用尽了，这个单词是" + this.world);
         }
       }
     },
 
-    deal(invalue, num) {   
+    deal(invalue, num) {
       if (invalue == num) {
-        this.rightletter++;     
+        this.rightletter++;
         let keyword = document.getElementById(invalue);
         keyword.style.backgroundColor = "#67C23A";
       } else {
         let ifhave = false;
         this.letterarr.forEach((ele) => {
-          if (invalue == ele) {       
+          if (invalue == ele) {
             let keyword = document.getElementById(invalue);
             keyword.style.backgroundColor = "#E6A23C";
             ifhave = true;
           }
         });
-        if (!ifhave) {         
+        if (!ifhave) {
           let keyword = document.getElementById(invalue);
           keyword.style.backgroundColor = "#F56C6C";
         }
-      }   
+      }
     },
   },
 };
