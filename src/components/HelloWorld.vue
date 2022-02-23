@@ -1,6 +1,9 @@
 <template>
   <div class="mypage">
-    <div class="row">
+    <div class="row" v-for="arow in upletter">
+      <span :class="alet.color" v-for="alet in arow">{{ alet.text }}</span>
+    </div>
+    <!-- <div class="row">
       <span class="let" id="q">q</span>
       <span class="let" id="w">w</span>
       <span class="let" id="e">e</span>
@@ -31,7 +34,7 @@
       <span class="let" id="b">b</span>
       <span class="let" id="n">n</span>
       <span class="let" id="m">m</span>
-    </div>
+    </div> -->
 
     <div class="rules">
       游戏规则：
@@ -69,6 +72,118 @@ export default {
   data() {
     return {
       msg: "Welcome to Your Vue.js App",
+      upletter: [
+        [
+          {
+            text: "q",
+            color: "noth",
+          },
+          {
+            text: "w",
+            color: "noth",
+          },
+          {
+            text: "e",
+            color: "noth",
+          },
+          {
+            text: "r",
+            color: "noth",
+          },
+          {
+            text: "t",
+            color: "noth",
+          },
+          {
+            text: "y",
+            color: "noth",
+          },
+          {
+            text: "u",
+            color: "noth",
+          },
+          {
+            text: "i",
+            color: "noth",
+          },
+          {
+            text: "o",
+            color: "noth",
+          },
+          {
+            text: "p",
+            color: "noth",
+          },
+        ],
+        [
+          {
+            text: "a",
+            color: "noth",
+          },
+          {
+            text: "s",
+            color: "noth",
+          },
+          {
+            text: "d",
+            color: "noth",
+          },
+          {
+            text: "f",
+            color: "noth",
+          },
+          {
+            text: "g",
+            color: "noth",
+          },
+          {
+            text: "h",
+            color: "noth",
+          },
+          {
+            text: "j",
+            color: "noth",
+          },
+          {
+            text: "k",
+            color: "noth",
+          },
+          {
+            text: "l",
+            color: "noth",
+          },
+        ],
+        [
+          {
+            text: "z",
+            color: "noth",
+          },
+          {
+            text: "x",
+            color: "noth",
+          },
+          {
+            text: "c",
+            color: "noth",
+          },
+          {
+            text: "v",
+            color: "noth",
+          },
+          {
+            text: "b",
+            color: "noth",
+          },
+          {
+            text: "n",
+            color: "noth",
+          },
+          {
+            text: "m",
+            color: "noth",
+          },
+        ],
+      ],
       enterarr: [],
       tes: "tailor",
       undoublearr: [
@@ -1520,7 +1635,7 @@ export default {
       rightletter: 0,
       inputarr: [], //input 数组
       world: "",
-      letterarr: "",
+      letterarr: "", //正确单词的字母数组
     };
   },
   created() {
@@ -1590,24 +1705,28 @@ export default {
       }
     },
     deal(invalue, num) {
-       let keyword = document.getElementById(invalue);
-      
+      let choupzm = null;
+      this.upletter.forEach((ele) => {
+        ele.forEach((item) => {
+          if (item.text == invalue) {
+            choupzm = item;
+          }
+        });
+      });
+
       if (invalue == num) {
         this.rightletter++;
-        keyword.setAttribute('style', 'background:#67C23A')
-        // keyword.style.backgroundColor = "#67C23A";
+        choupzm.color = "true";
       } else {
         let ifhave = false;
         this.letterarr.forEach((ele) => {
           if (invalue == ele) {
-            keyword.setAttribute('style', 'background:#E6A23C')
-            // keyword.style.backgroundColor = "#E6A23C";
-            // ifhave = true;
+            choupzm.color = "have";
+            ifhave = true;
           }
         });
         if (!ifhave) {
-            keyword.setAttribute('style', 'background:#F56C6C')
-          keyword.style.backgroundColor = "#F56C6C";
+          choupzm.color = "unhave";
         }
       }
     },
@@ -1622,7 +1741,7 @@ export default {
   margin-bottom: 7px;
 }
 
-#row span {
+.row span {
   margin: 0 5px;
   display: inline-block;
   height: 35px;
@@ -1632,7 +1751,7 @@ export default {
   font-size: 30px;
   border: 2px solid white;
   text-align: center;
-  background-color: black;
+
   color: white;
 }
 
@@ -1652,7 +1771,8 @@ export default {
   border-radius: 8px;
 }
 
-.butt ,.myform{
+.butt,
+.myform {
   display: flex;
   justify-content: center;
 }
@@ -1670,6 +1790,9 @@ export default {
   margin-left: 5px;
   border-radius: 2px;
   margin-bottom: 5px;
+}
+.noth {
+  background-color: black;
 }
 
 .have {
