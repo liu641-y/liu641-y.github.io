@@ -1,41 +1,9 @@
 <template>
   <div class="mypage">
+    <div>第{{ days }}</div>
     <div class="row" v-for="arow in upletter">
       <span :class="alet.color" v-for="alet in arow">{{ alet.text }}</span>
     </div>
-    <!-- <div class="row">
-      <span class="let" id="q">q</span>
-      <span class="let" id="w">w</span>
-      <span class="let" id="e">e</span>
-      <span class="let" id="r">r</span>
-      <span class="let" id="t">t</span>
-      <span class="let" id="y">y</span>
-      <span class="let" id="u">u</span>
-      <span class="let" id="i">i</span>
-      <span class="let" id="o">o</span>
-      <span class="let" id="p">p</span>
-    </div>
-    <div class="row">
-      <span class="let" id="a">a</span>
-      <span class="let" id="s">s</span>
-      <span class="let" id="d">d</span>
-      <span class="let" id="f">f</span>
-      <span class="let" id="g">g</span>
-      <span class="let" id="h">h</span>
-      <span class="let" id="j">j</span>
-      <span class="let" id="k">k</span>
-      <span class="let" id="l">l</span>
-    </div>
-    <div class="row">
-      <span class="let" id="z">z</span>
-      <span class="let" id="x">x</span>
-      <span class="let" id="c">c</span>
-      <span class="let" id="v">v</span>
-      <span class="let" id="b">b</span>
-      <span class="let" id="n">n</span>
-      <span class="let" id="m">m</span>
-    </div> -->
-
     <div class="rules">
       游戏规则：
       绿色为字母正确，棕色为含有该字母但位置不正确，红色为不包含此字母
@@ -55,12 +23,12 @@
       <button @click="def()" class="confirm">确定</button>
     </div>
     <div v-for="(wor, index) in enterarr" :key="index">
-      <span v-for="(t, ind) in wor" :key="ind + 1">
+      <span v-for="(t, ind) in wor" :key="ind">
         <span v-if="t == world[ind]" class="downlet true">{{ t }}</span>
         <span v-else-if="world.indexOf(t) != -1" class="downlet have">{{
           t
         }}</span>
-        <span v-else class="downlet unhave">{{ t }}</span>
+        <span v-else cla  ss="downlet unhave">{{ t }}</span>
       </span>
     </div>
   </div>
@@ -68,7 +36,7 @@
 
 <script>
 export default {
-  name: "HelloWorld",
+  name: "game",
   data() {
     return {
       msg: "Welcome to Your Vue.js App",
@@ -1632,6 +1600,7 @@ export default {
         "remain",
         "brunch",
       ],
+      days : 0,
       rightletter: 0,
       inputarr: [], //input 数组
       world: "",
@@ -1642,9 +1611,9 @@ export default {
     this.inputarr = document.getElementsByClassName("inp");
     let firstwechat = new Date("2021/04/09/23:36").getTime();
     let nowtime = new Date();
-    let firstdays = nowtime.getTime() - firstwechat,
-      days = parseInt(firstdays / (1000 * 60 * 60 * 24));
-    this.world = this.undoublearr[days - 312].toLowerCase();
+    let firstdays = nowtime.getTime() - firstwechat
+     this.days = parseInt(firstdays / (1000 * 60 * 60 * 24));
+    this.world = this.undoublearr[this.days - 312].toLowerCase();
     this.letterarr = this.world.split("");
   },
   methods: {
