@@ -19,10 +19,13 @@ export default {
   text-align: center;
   color: #2c3e50;
 } */
-body{
+body ,html,#app{
   /* background-color: black;*/
   height: 100%;
   width: 100%;
   margin: 0;
+  background-color: black;
+
+  font-size: 50px;
 }
 </style>
