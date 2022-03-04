@@ -1704,6 +1704,9 @@ export default {
 </script>
 
 <style scoped>
+.mypage{
+  background-color: white;
+}
 .row {
   display: flex;
   justify-content: center;
