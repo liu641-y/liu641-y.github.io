@@ -1,7 +1,9 @@
 <template>
   <div id="firpage">
+    <div @click="jumpto('/game')">play game click me</div>
+    <div @click="jumpto('/demo')">demo show click me</div>
     <span class="intr" v-for="letter in intrarr">{{ letter }}</span>
-    <span @click="jumpto('/game')">玩游戏点击这里</span>
+    
   </div>
 </template>
 <script>
@@ -25,8 +27,9 @@ export default {
     listAnimate() {
       this.anime({
         targets: ".intr",
-        fontSize: "25px",
-        delay: this.anime.stagger(200),
+        fontSize: "20px",
+        delay: this.anime.stagger(100),
+        // easing: 'linear'
       });
     },
   },
@@ -45,5 +48,8 @@ export default {
   .intr {
     font-size: 0;
   }
+  // span{
+  //   margin: 1px;
+  // }
 }
 </style>

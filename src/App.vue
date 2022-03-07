@@ -26,6 +26,6 @@ body ,html,#app{
   margin: 0;
   background-color: black;
 
-  font-size: 50px;
+  font-size: 20px;
 }
 </style>

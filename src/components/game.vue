@@ -28,7 +28,7 @@
         <span v-else-if="world.indexOf(t) != -1" class="downlet have">{{
           t
         }}</span>
-        <span v-else cla  ss="downlet unhave">{{ t }}</span>
+        <span v-else class="downlet unhave">{{ t }}</span>
       </span>
     </div>
   </div>
