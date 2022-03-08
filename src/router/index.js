@@ -1,8 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import game from '@/components/game'
-import first from '@/components/first'
-import demo from '@/components/demo'
+
 
 Vue.use(Router)
 
@@ -11,15 +9,20 @@ export default new Router({
     {
       path: '/game',
       name: 'game',
-      component: game
+      component: resolve => require(['@/components/game'], resolve),
+     
     },{
       path: '/',
       name: 'first',
-      component: first
+      component: resolve => require(['@/components/first'], resolve),
+    },{
+      path: '/about',
+      name: 'about',
+      component: resolve => require(['@/components/about'], resolve),
     },{
       path: '/demo',
       name: 'demo',
-      component: demo
+      component: resolve => require(['@/components/demo'], resolve),
     }
   ]
 })

@@ -1,6 +1,6 @@
 <template>
   <div id="firpage">
-    
+    <div @click="jumpto('/')" class="jumpto"  style="cursor: pointer ;position: absolute; z-index: 400; color: red">back to home page</div>
     <li
       v-for="(ali, index) in 6"
       :key="index"
@@ -9,19 +9,15 @@
         background: 'url(../../static/man' + index + '.jpg)',
         backgroundSize: 'cover',
       }"
-      @click="jumpto(ali.ad)"
-    >
- 
-    </li>
+      @click="jumpto()"
+    ></li>
   </div>
 </template>
 <script>
 export default {
   name: "demo",
   data() {
-    return {
-     
-    };
+    return {};
   },
   watch: {
     listData() {
@@ -37,36 +33,31 @@ export default {
         targets: ".ali",
         height: "80%",
         width: "15%",
-        color: 'red',
-        fontSize: '35px'
-,        delay: this.anime.stagger(300),
+        color: "red",
+        fontSize: "35px",
+        delay: this.anime.stagger(300),
         direction: "normal",
         easing: "spring(1, 80, 10, 0)",
       });
-     
     },
-    shan(){
-       this.anime({
+    shan() {
+      this.anime({
         targets: ".ali",
-        opacity: [1,0,1],
+        opacity: [1, 0, 1],
         // delay: 5000,
         loop: 3,
         delay: this.anime.stagger(100),
         // direction: "normal",
         easing: "spring(1, 80, 10, 0)",
       });
-    }
+    },
   },
-  created(){ },
+  created() {},
   mounted() {
-    
     this.listAnimate();
     setTimeout(() => {
-      console.log('jinlai')
-       this.shan()
+      this.shan();
     }, 5000);
-   
-   
   },
 };
 </script>
@@ -86,7 +77,7 @@ export default {
   .ali:hover {
     opacity: 1;
   }
-  .let{
+  .let {
     color: blue;
     display: inline-block;
     font-size: 0;

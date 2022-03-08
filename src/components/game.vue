@@ -1,6 +1,7 @@
 <template>
   <div class="mypage">
     <div>第{{ days }}</div>
+    <div @click="jumpto('/')" class="jumpto"  style="cursor: pointer ; color: red; ">back to home page</div>
     <div class="row" v-for="arow in upletter">
       <span :class="alet.color" v-for="alet in arow">{{ alet.text }}</span>
     </div>
@@ -1617,6 +1618,9 @@ export default {
     this.letterarr = this.world.split("");
   },
   methods: {
+    jumpto(ad) {
+      this.$router.push(ad);
+    },
     befocus(ind) {
       this.inputarr[ind - 1].value = "";
     },
