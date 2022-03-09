@@ -1,11 +1,10 @@
 <template>
   <div id="firpage">
+    <span class="intr" v-for="letter in intrarr">{{ letter }}</span>
     <div @click="jumpto('/game')" class="jumpto">play game click me</div>
     <div @click="jumpto('/demo')" class="jumpto">demo show click me</div>
     <div @click="jumpto('/about')" class="jumpto">about me</div>
-    
-    <span class="intr" v-for="letter in intrarr">{{ letter }}</span>
-    
+    <div @click="jumpto('/nag')" class="jumpto">零零散散记录的一些话</div>
   </div>
 </template>
 <script>
@@ -31,7 +30,7 @@ export default {
         targets: ".intr",
         fontSize: "20px",
         delay: this.anime.stagger(100),
-        easing: 'linear'
+        easing: "linear",
         //  easing: 'spring(1, 80, 10, 0)'
       });
     },
@@ -47,8 +46,9 @@ export default {
 
 <style lang="less" scoped>
 #firpage {
+  // z-index: 100;
   color: blue;
-  .jumpto{
+  .jumpto {
     cursor: pointer;
   }
   .intr {

@@ -1,6 +1,6 @@
 <template>
   <div id="firpage">
-    <div @click="jumpto('/')" class="jumpto"  style="cursor: pointer ;position: absolute; z-index: 400; color: red">back to home page</div>
+    <div @click="jumpto('/')" class="jumpto"  style="cursor: pointer ;position: absolute; z-index: 400; color: red;top: 0;">back to home page</div>
     <li
       v-for="(ali, index) in 6"
       :key="index"

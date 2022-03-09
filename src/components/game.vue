@@ -1,13 +1,20 @@
 <template>
   <div class="mypage">
+    <div
+      @click="jumpto('/')"
+      class="jumpto"
+      style="cursor: pointer; color: red"
+    >
+      back to home page
+    </div>
     <div>第{{ days }}</div>
-    <div @click="jumpto('/')" class="jumpto"  style="cursor: pointer ; color: red; ">back to home page</div>
+    
     <div class="row" v-for="arow in upletter">
       <span :class="alet.color" v-for="alet in arow">{{ alet.text }}</span>
     </div>
     <div class="rules">
       游戏规则：
-      绿色为字母正确，棕色为含有该字母但位置不正确，红色为不包含此字母
+      请输入六个字母的单词，且字母不重复。绿色为字母正确，棕色为单词含有该字母但位置不正确，红色为单词中不包含此字母
     </div>
     <form name="myform" class="myform">
       <input
@@ -1601,19 +1608,20 @@ export default {
         "remain",
         "brunch",
       ],
-      days : 0,
+      days: 0,
       rightletter: 0,
       inputarr: [], //input 数组
       world: "",
       letterarr: "", //正确单词的字母数组
+      alright: false,
     };
   },
   created() {
     this.inputarr = document.getElementsByClassName("inp");
     let firstwechat = new Date("2021/04/09/23:36").getTime();
     let nowtime = new Date();
-    let firstdays = nowtime.getTime() - firstwechat
-     this.days = parseInt(firstdays / (1000 * 60 * 60 * 24));
+    let firstdays = nowtime.getTime() - firstwechat;
+    this.days = parseInt(firstdays / (1000 * 60 * 60 * 24));
     this.world = this.undoublearr[this.days - 312].toLowerCase();
     this.letterarr = this.world.split("");
   },
@@ -1645,35 +1653,46 @@ export default {
       }
     },
     def() {
-      this.rightletter = 0;
-      let enterWorld = "",
-        ifInWorldArr = false;
-      for (let i = 0; i < 6; i++) {
-        enterWorld += this.inputarr[i].value;
-      }
-      this.undoublearr.forEach((ele) => {
-        if (ele.toLowerCase() == enterWorld) {
-          ifInWorldArr = true;
-        }
-      });
-      if (!ifInWorldArr) {
-        alert("请输入正确的单词");
-        navigator.vibrate(1000); // 手机震动
-        for (let i = 0; i < 6; i++) {
-          this.inputarr[i].value = "";
-        }
+      if (this.alright) {
       } else {
-        this.enterarr.push(enterWorld);
+        this.rightletter = 0;
+        let enterWorld = "",
+          ifInWorldArr = false;
         for (let i = 0; i < 6; i++) {
-          this.deal(this.inputarr[i].value, this.letterarr[i]);
-          this.inputarr[i].value = "";
+          enterWorld += this.inputarr[i].value;
         }
-      }
-      if (this.rightletter == 6) {
-        alert("答对了");
-      } else {
-        if (this.enterarr.length == 5) {
-          alert("很遗憾5次机会用尽了，这个单词是" + this.world);
+        this.undoublearr.forEach((ele) => {
+          if (ele.toLowerCase() == enterWorld) {
+            ifInWorldArr = true;
+          }
+        });
+        if (!ifInWorldArr) {
+           this.$message.error('请输入正确的单词');
+          navigator.vibrate(1000); // 手机震动
+          for (let i = 0; i < 6; i++) {
+            this.inputarr[i].value = "";
+          }
+        } else {
+          this.enterarr.push(enterWorld);
+          for (let i = 0; i < 6; i++) {
+            this.deal(this.inputarr[i].value, this.letterarr[i]);
+            this.inputarr[i].value = "";
+          }
+        }
+        if (this.rightletter == 6) {
+          this.$message({
+            message: "恭喜你，答对了",
+            type: "success",
+          });
+          this.alright = true;
+        } else {
+          if (this.enterarr.length == 5) {
+            this.$message({
+              message:"很遗憾5次机会用尽了，这个单词是" + this.world,
+              type: "warning",
+            });
+            // alert("很遗憾5次机会用尽了，这个单词是" + this.world);
+          }
         }
       }
     },
@@ -1708,8 +1727,9 @@ export default {
 </script>
 
 <style scoped>
-.mypage{
-  background-color: white;
+.mypage {
+  /* background-color: white; */
+  color: white;
 }
 .row {
   display: flex;
