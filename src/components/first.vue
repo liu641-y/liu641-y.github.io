@@ -5,6 +5,7 @@
     <div @click="jumpto('/demo')" class="jumpto">demo show click me</div>
     <div @click="jumpto('/about')" class="jumpto">about me</div>
     <div @click="jumpto('/nag')" class="jumpto">零零散散记录的一些话</div>
+    <i class="el-icon-s-tools"></i>
   </div>
 </template>
 <script>
@@ -28,7 +29,15 @@ export default {
     listAnimate() {
       this.anime({
         targets: ".intr",
-        fontSize: "20px",
+        fontSize: "30px",
+        delay: this.anime.stagger(100),
+        easing: "linear",
+        //  easing: 'spring(1, 80, 10, 0)'
+      });
+      this.anime({
+        targets: ".el-icon-s-tools",
+        rotate: '1turn',
+        loop: true,
         delay: this.anime.stagger(100),
         easing: "linear",
         //  easing: 'spring(1, 80, 10, 0)'
@@ -48,6 +57,8 @@ export default {
 #firpage {
   // z-index: 100;
   color: blue;
+  font-size: 30px;
+  font-weight: bolder;
   .jumpto {
     cursor: pointer;
   }

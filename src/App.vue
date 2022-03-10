@@ -25,10 +25,14 @@ export default {
             cirArry.length = 0;
         })
         app.addEventListener('mousemove', function (e) {
+            cirArry.push(new cir(e.clientX, e.clientY, 3));
+            cirArry.push(new cir(e.clientX, e.clientY, 3));
+        });
+        app.addEventListener('touchstart', function (e) {
             cirArry.push(new cir(e.clientX, e.clientY, 30));
             cirArry.push(new cir(e.clientX, e.clientY, 30));
         });
-        app.addEventListener('touch', function (e) {
+         app.addEventListener('touchmove', function (e) {
             cirArry.push(new cir(e.clientX, e.clientY, 30));
             cirArry.push(new cir(e.clientX, e.clientY, 30));
         });
@@ -44,8 +48,8 @@ export default {
             this.color3 = random(0, 255);
             // this.color = 'rgb(' + random(0,255) + ',' + random(0,255) + ',' + random(0,255) +')';
             this.a = 1;
-            this.vx = (Math.random() - 0.5) * 1;
-            this.vy = (Math.random() - 0.5) * 1;
+            this.vx = (Math.random() - 0.5) * 5;
+            this.vy = (Math.random() - 0.5) * 5;
             this.draw();
         }
         cir.prototype = {
@@ -53,9 +57,9 @@ export default {
                 pa.beginPath();
                 // pa.font = "100px 楷体";    //设置字体大小字体样式
                 // // pa.fillStyle = 'red';
-                // pa.fillText(" I love you 小花",this.x, this.y) ; //文字的位置   空心文字
+                // pa.fillText("文本内容",this.x, this.y) ; //文字的位置   空心文字
                 pa.fillStyle = 'rgb(' + this.color1 + ',' + this.color2 + ',' + this.color3 + ')';
-                pa.fillStyle = 'white';
+                // pa.fillStyle = 'red';
                 pa.globalAlpha = this.a
                 pa.arc(this.x, this.y, this.r, 0, Math.PI * 2);
                 pa.fill();
@@ -64,8 +68,8 @@ export default {
             mov() {
                 this.x += this.vx;
                 this.y += this.vy;
-                this.r += 0.2;
-                this.a *= 0.99;
+                this.r += 0.01;
+                this.a *= 0.999;
                 this.color1 = (this.color1 + random(0, 10)) % 256;
                 this.color2 = (this.color2 + random(0, 10)) % 256;
                 this.color3 = (this.color3 + random(0, 10)) % 256;
@@ -93,10 +97,13 @@ export default {
 };
 </script>
 <style>
+ 
 body,
 html,
 #app,
 canvas {
+  font-family: cursive;
+  font-size: 30px;
   /* background-color: black;*/
   height: 100%;
   width: 100%;

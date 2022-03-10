@@ -73,7 +73,7 @@ export default {
   align-items: center;
   transform-style: preserve-3d;
   color: yellow;
-  font-family: cursive;
+ 
   .ali:hover {
     opacity: 1;
   }

@@ -1,15 +1,44 @@
 <template>
   <div id="aboutMe">
       <div @click="jumpto('/')" class="jumpto" style="cursor: pointer ; color: red">back to home page</div>
-       <div>关灯，吃面</div>
-       <span>今天回到家，煮了点面吃，一边吃面一边哭，泪水滴落在碗里，没有开灯</span>
+      <div class="titleList">
+        <div class="anag" v-for="(anag,index) in naglist" :key="index">
+          <span>{{ anag.day}}</span>
+          <span>{{ anag.month}}</span>
+          <div>{{ anag.title}}</div>
+          
+        </div>
+
+      </div>
   </div>
 </template>
 <script>
 export default {
   name: "nag",
   data() {
-    return {};
+    return {
+      naglist: [{
+        day: 9,
+        month: 3,
+        title: '关灯吃面',
+      },{
+        day: 9,
+        month: 3,
+        title: '关灯吃面',
+      },{
+        day: 9,
+        month: 3,
+        title: '关灯吃面',
+      },{
+        day: 9,
+        month: 3,
+        title: '关灯吃面',
+      },{
+        day: 9,
+        month: 3,
+        title: '关灯吃面',
+      }]
+    };
   },
   watch: {},
   methods: {
