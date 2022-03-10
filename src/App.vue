@@ -21,9 +21,9 @@ export default {
         }
         pat.width = window.innerWidth;
         pat.height = window.innerHeight;
-        app.addEventListener('click', function (e) {
-            cirArry.length = 0;
-        })
+        // app.addEventListener('click', function (e) {
+        //     cirArry.length = 0;
+        // })
         app.addEventListener('mousemove', function (e) {
             cirArry.push(new cir(e.clientX, e.clientY, 3));
             cirArry.push(new cir(e.clientX, e.clientY, 3));
@@ -33,9 +33,11 @@ export default {
             cirArry.push(new cir(e.clientX, e.clientY, 30));
         });
          app.addEventListener('touchmove', function (e) {
+           e.preventDefault();
             cirArry.push(new cir(e.clientX, e.clientY, 30));
             cirArry.push(new cir(e.clientX, e.clientY, 30));
         });
+        
         //  cirArry.push(new cir(30, 30, 30));
         // //     cirArry.push(new cir(e.clientX, e.clientY, 30));
 
