@@ -27,6 +27,14 @@ export default new Router({
       path: '/nag',
       name: 'nag',
       component: resolve => require(['@/components/nag'], resolve),
+    },{
+      path: '/book',
+      name: 'book',
+      component: resolve => require(['@/components/book'], resolve),
+    },{
+      path: '/shares',
+      name: 'shares',
+      component: resolve => require(['@/components/shares'], resolve),
     }
   ]
 })
