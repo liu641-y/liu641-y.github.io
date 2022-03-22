@@ -7,17 +7,17 @@
     >
       back to home page
     </div>
-   <el-descriptions title="about me">
-      <el-descriptions-item label="性别">男</el-descriptions-item>
+   <el-descriptions  title="about me" direction="vertical" >
+      <el-descriptions-item label="性别" >男</el-descriptions-item>
       <el-descriptions-item label="年龄">24</el-descriptions-item>
-      <el-descriptions-item label="现居">北京</el-descriptions-item>
-      <el-descriptions-item label="爱好">
-        在股市当韭菜，给大佬捐钱。在球场被人秀，给大佬当背景。曾热爱运动，热爱阅读，现在热爱躺平。
+      <el-descriptions-item label="职业">前端开发</el-descriptions-item>
+      <el-descriptions-item label="业余活动">
+        股市捐钱， <br>
+        球场散步，  <br>
+        过目即忘式看书，<br>
+        运动 次/年
       </el-descriptions-item>
-      
-    </el-descriptions>
-    <div>
-      回到当下，不要陷入空想中，去做。生活的乐趣在于逃离生活。
+      <el-descriptions-item label="人生指南">回到当下，不要陷入空想中，去做。生活的乐趣在于逃离生活。
       情绪可控，不要被情绪控制。不去讨厌任何人，不以任何恶意的态度对待他人。
       那些你想去讨厌的人，都只是可怜的人。对他人的不善，都只是在折磨自己。
       保持理性，保持开放，人不存在固定的定义，别用过去的记忆禁锢自己，享受未来的无限种可能。
@@ -34,8 +34,9 @@
       不要进入等待的状态，而耗费当下的人生。可以有所期待，但期待的只能是自己。
       凡是坚持做的事，就会有放弃的一天。拖着疲惫努力坚持时，转变为被对目标的巨大欲望推着走。如果不能改变，说明报酬与付出不相匹配，早晚会放弃，不如尽早。
       跑的越快阻力越大。反之，阻力很大时，跑的最快，进步越大。
-      今天敷衍过去的事情，大概率明天也会敷衍过去。
-    </div>
+      今天敷衍过去的事情，大概率明天也会敷衍过去。</el-descriptions-item>
+    </el-descriptions>
+    
    
   </div>
 </template>

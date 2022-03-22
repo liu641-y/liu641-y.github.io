@@ -9,7 +9,7 @@
     </div>
     <div>book list</div>
 
-    <el-collapse v-model="activeName" accordion>
+    <el-collapse accordion>
       <el-collapse-item
         v-for="(book, index) in booklist"
         :key="index"
@@ -17,24 +17,19 @@
         :name="index"
       >
         <div>
-          {{ book.intro }}
+          {{ book.intro || '暂无内容' }}
         </div>
       </el-collapse-item>
     </el-collapse>
   </div>
 </template>
 <script>
+import { booklist } from "../alldata.js";
 export default {
   name: "about",
   data() {
     return {
-      booklist: [
-        { name: "共产党宣言", intro: "暂无感想" },
-        {
-          name: "海龟交易法则",
-          intro: "以数学概率分析股市",
-        },
-      ],
+      booklist: [],
     };
   },
   watch: {},
@@ -44,13 +39,28 @@ export default {
     },
   },
   created() {},
-  mounted() {},
+  mounted() {
+    this.booklist = booklist;
+  },
 };
 </script>
 
 <style lang="less" scoped>
 #aboutMe {
   color: white;
+  /deep/ .el-collapse-item__header{
+    font-size: 20px;
+    color: white;
+    background: none;
+    text-align: center;
+  }
+  /deep/ .el-collapse-item__wrap{
+    background: none;
+  }
+  /deep/ .el-collapse-item__content{
+    color: white;
+    font-size: 20px;
+  }
   .booklist {
     display: flex;
     .abook {

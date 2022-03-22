@@ -70,7 +70,7 @@ export default {
           this.x += this.vx;
           this.y += this.vy;
           this.r += 0.01;
-          this.a *= 0.999;
+          this.a *= 0.93;
           this.color1 = (this.color1 + random(0, 10)) % 256;
           this.color2 = (this.color2 + random(0, 10)) % 256;
           this.color3 = (this.color3 + random(0, 10)) % 256;
@@ -114,8 +114,15 @@ canvas {
   width: 100%;
   margin: 0;
   /* background-color: black; */
-
-  font-size: 20px;
+ 
+  font-size: 30px;
+}
+#app{
+   overflow: scroll;
+   
+}
+#app::-webkit-scrollbar{
+  width: 0;
 }
 canvas {
   z-index: -1;

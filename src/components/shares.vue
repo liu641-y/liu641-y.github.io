@@ -33,13 +33,13 @@ export default {
           timestamp: '2022-3-21',
           color: 'white'
         }, {
-          content: '买入',
-          timestamp: '2018-04-03 20:46',
-          color: 'red'
-        }, {
-          content: '卖出',
-          timestamp: '2018-04-03 20:46',
+          content: '卖出明阳智能：100',
+          timestamp: '2018-03-22 20:46',
           color: 'lightgreen'
+        }, {
+          content: '买入华钰：200',
+          timestamp: '2018-03-22 20:46',
+          color: 'red'
         }]
     };
   },
@@ -59,6 +59,12 @@ export default {
   color: white;
   /deep/ .el-timeline-item__content{
       color: white;
+  }
+  .jumpto{
+    margin-bottom: 20px;
+  }
+  /deep/ .el-timeline{
+    font-size: 20px;
   }
  
 }
