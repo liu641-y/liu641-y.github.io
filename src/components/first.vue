@@ -1,11 +1,13 @@
 <template>
   <div id="firpage">
-    <span class="intr" v-for="letter in intrarr">{{ letter }}</span>
+     <!-- <div @click="jumpto('/nag')" class="jumpto">学习记录</div> -->
     <div @click="jumpto('/game')" class="jumpto">play game click me</div>
     <div @click="jumpto('/about')" class="jumpto">about me</div>
     <div @click="jumpto('/book')" class="jumpto">book list</div>
     <div @click="jumpto('/shares')" class="jumpto">操作记录</div>
-    <div><i class="el-icon-s-tools"></i></div>
+   
+    <span class="intr" v-for="letter in intrarr">{{ letter }}</span>
+     <div><i class="el-icon-football"></i></div>
   </div>
 </template>
 <script>
@@ -34,11 +36,13 @@ export default {
         easing: "linear",
       });
       this.anime({
-        targets: ".el-icon-s-tools",
-        rotate: "1turn",
+        targets: ".el-icon-football",
+        top: '250',
+        direction: 'alternate',
+        rotate: "0.5turn",
         loop: true,
-        easing: "linear",
-        duration: 3000,
+  easing: 'cubicBezier(.5, .05, .1, .3)',
+        duration: 1000,
       });
     },
   },
@@ -55,7 +59,7 @@ export default {
 #firpage {
   
   color: white;
-  font-size: 40px;
+  // overflow: hidden;
   font-weight: bolder;
   .jumpto {
     cursor: pointer;
@@ -63,7 +67,11 @@ export default {
   .intr {
     font-size: 0;
   }
-  .el-icon-s-tools {
+  .el-icon-football {
+    // right: 20px;
+    top: 0;
+    // position: relative;
+    position: relative;
     font-size: 50px;
   }
   .tou {

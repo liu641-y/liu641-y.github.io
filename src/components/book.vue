@@ -1,13 +1,12 @@
 <template>
   <div id="aboutMe">
-    <div
+    <i
+      class="el-icon-s-home"
       @click="jumpto('/')"
-      class="jumpto"
-      style="cursor: pointer; color: red"
+      style="cursor: pointer; color: blue;position:fixed;left: 0; font-size: 25px; padding: 10px"
     >
-      back to home page
-    </div>
-    <div>book list</div>
+    </i>
+    <div class="booktitle">book list</div>
 
     <el-collapse accordion>
       <el-collapse-item
@@ -17,7 +16,7 @@
         :name="index"
       >
         <div>
-          {{ book.intro || '暂无内容' }}
+          {{ book.intro || "暂无内容" }}
         </div>
       </el-collapse-item>
     </el-collapse>
@@ -48,16 +47,28 @@ export default {
 <style lang="less" scoped>
 #aboutMe {
   color: white;
-  /deep/ .el-collapse-item__header{
+  .booktitle {
+    font-size: 25px;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  /deep/ .el-collapse-item__header {
     font-size: 20px;
     color: white;
     background: none;
-    text-align: center;
+    justify-content: center;
+    border: 0;
   }
-  /deep/ .el-collapse-item__wrap{
+  /deep/ .el-collapse-item__arrow {
+    margin: 0;
+    color: red;
+    font-weight: bolder;
+    // margin-left:40px;
+  }
+  /deep/ .el-collapse-item__wrap {
     background: none;
   }
-  /deep/ .el-collapse-item__content{
+  /deep/ .el-collapse-item__content {
     color: white;
     font-size: 20px;
   }

@@ -2,23 +2,20 @@
   <div id="app">
     <canvas id="flo"></canvas>
     <router-view />
-  
   </div>
 </template>
 
 <script>
-
 export default {
   name: "App",
   methods: {
-   hh(){
-     console.log()
-   },
+    hh() {
+      console.log();
+    },
     aldraw() {
- 
       var pat = document.getElementById("flo");
       var app = document.getElementById("app");
-      
+
       var pa = pat.getContext("2d");
       var cirArry = [];
       function random(min, max) {
@@ -31,7 +28,7 @@ export default {
       //   cirArry.length = 0;
       // });
       app.addEventListener("mousemove", function (e) {
-       cirArry.push(new cir(e.clientX, e.clientY, 5));
+        cirArry.push(new cir(e.clientX, e.clientY, 5));
       });
       app.addEventListener("touchstart", function (e) {
         for (i = 0; i < 8; i++) {
@@ -40,8 +37,8 @@ export default {
       });
 
       function cir(x, y, r) {
-        this.x =  random(0,pat.width)// 在随机位置出现
-        this.y = random(0,pat.height)
+        this.x = random(0, pat.width); // 在随机位置出现
+        this.y = random(0, pat.height);
         this.r = r;
         this.color1 = random(0, 255);
         this.color2 = random(0, 255);
@@ -57,10 +54,10 @@ export default {
           pa.beginPath();
           // pa.font = "20px 楷体";    //设置字体大小字体样式
           // pa.fillStyle = 'red';
-          pa.fillText("",this.x, this.y) ; //文字的位置   空心文字
+          pa.fillText("", this.x, this.y); //文字的位置   空心文字
           pa.fillStyle =
             "rgb(" + this.color1 + "," + this.color2 + "," + this.color3 + ")";
-          // pa.fillStyle = 'grey';
+          pa.fillStyle = "red";
           pa.globalAlpha = this.a;
           pa.arc(this.x, this.y, this.r, 0, Math.PI * 2);
           pa.fill();
@@ -107,21 +104,18 @@ body,
 html,
 #app,
 canvas {
-  font-family: cursive;
-  font-size: 30px;
-  /* background-color: black;*/
+  /* font-family: cursive; */
+
   height: 100%;
   width: 100%;
   margin: 0;
-  /* background-color: black; */
- 
-  font-size: 30px;
+
+  font-size: 25px;
 }
-#app{
-   overflow: scroll;
-   
+#app {
+  overflow: scroll;
 }
-#app::-webkit-scrollbar{
+#app::-webkit-scrollbar {
   width: 0;
 }
 canvas {

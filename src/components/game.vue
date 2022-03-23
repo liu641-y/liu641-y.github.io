@@ -1,21 +1,23 @@
 <template>
   <div class="mypage">
-    <div
+      <div class="days">第{{ days }}</div>
+    <i
+      class="el-icon-s-home"
       @click="jumpto('/')"
-      class="jumpto"
-      style="cursor: pointer; color: red"
+      style="cursor: pointer; color: blue; font-size: 25px; padding: 10px;float: left;"
     >
-      back to home page
-    </div>
-    <div>第{{ days }}</div>
-    
-    <div class="row" v-for="arow in upletter">
-      <span :class="alet.color" v-for="alet in arow">{{ alet.text }}</span>
-    </div>
+    </i>
+      <div class="title">game</div>
     <div class="rules">
       游戏规则：
       请输入六个字母的单词，且字母不重复。绿色为字母正确，棕色为单词含有该字母但位置不正确，红色为单词中不包含此字母
     </div>
+  
+
+    <div class="row" v-for="arow in upletter">
+      <span :class="alet.color" v-for="alet in arow">{{ alet.text }}</span>
+    </div>
+
     <form name="myform" class="myform">
       <input
         @keyup="upkey($event, ind - 1)"
@@ -43,7 +45,7 @@
 </template>
 
 <script>
-import {worldlist } from '../alldata'
+import { worldlist } from "../alldata";
 export default {
   name: "game",
   data() {
@@ -173,14 +175,14 @@ export default {
     };
   },
   created() {
-    this.undoublearr = worldlist
+    this.undoublearr = worldlist;
     this.inputarr = document.getElementsByClassName("inp");
     let firstwechat = new Date("2021/04/09/23:36").getTime();
     let nowtime = new Date();
     let firstdays = nowtime.getTime() - firstwechat;
     this.days = parseInt(firstdays / (1000 * 60 * 60 * 24));
     this.world = this.undoublearr[this.days - 312].toLowerCase();
-    console.log(this.world, '今日单词')
+    console.log(this.world, "今日单词");
     this.letterarr = this.world.split("");
   },
   methods: {
@@ -225,7 +227,7 @@ export default {
           }
         });
         if (!ifInWorldArr) {
-           this.$message.error('请输入正确的单词');
+          this.$message.error("请输入正确的单词");
           navigator.vibrate(1000); // 手机震动
           for (let i = 0; i < 6; i++) {
             this.inputarr[i].value = "";
@@ -245,8 +247,9 @@ export default {
           this.alright = true;
         } else {
           if (this.enterarr.length == 5) {
+            this.alright = true;
             this.$message({
-              message:"很遗憾5次机会用尽了，这个单词是" + this.world,
+              message: "很遗憾5次机会用尽了，这个单词是" + this.world,
               type: "warning",
             });
             // alert("很遗憾5次机会用尽了，这个单词是" + this.world);
@@ -289,6 +292,11 @@ export default {
   /* background-color: white; */
   color: white;
 }
+.title{
+  text-align: center;
+  font-size: 25px;
+  padding: 20px;
+}
 .row {
   display: flex;
   justify-content: center;
@@ -308,9 +316,17 @@ export default {
 
   color: white;
 }
-
+.days{
+  text-align: center;
+  float: right;
+  padding: 10px;
+}
 .rules {
-  margin-bottom: 15px;
+
+  text-align: center;
+  width: 60%;
+  margin: auto;
+    margin-bottom: 15px;
 }
 
 .inp {

@@ -3,8 +3,9 @@
       <div @click="jumpto('/')" class="jumpto" style="cursor: pointer ; color: red">back to home page</div>
       <div class="titleList">
         <div class="anag" v-for="(anag,index) in naglist" :key="index">
-          <span>{{ anag.day}}</span>
-          <span>{{ anag.month}}</span>
+          <span>{{ anag.month}}</span> 月
+          <span>{{ anag.day}}</span> 日
+          
           <div>{{ anag.title}}</div>
           
         </div>
@@ -18,25 +19,10 @@ export default {
   data() {
     return {
       naglist: [{
-        day: 9,
+        day: 22,
         month: 3,
-        title: '关灯吃面',
-      },{
-        day: 9,
-        month: 3,
-        title: '关灯吃面',
-      },{
-        day: 9,
-        month: 3,
-        title: '关灯吃面',
-      },{
-        day: 9,
-        month: 3,
-        title: '关灯吃面',
-      },{
-        day: 9,
-        month: 3,
-        title: '关灯吃面',
+        title: 'exports 和 module exports',
+        content: ''
       }]
     };
   },

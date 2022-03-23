@@ -1,12 +1,8 @@
 <template>
   <div id="shares">
-     <div
-      @click="jumpto('/')"
-      class="jumpto"
-      style="cursor: pointer; color: red"
-    >
-      back to home page
-    </div>
+       <i class="el-icon-s-home" @click="jumpto('/')" style="cursor: pointer; color: blue ;font-size: 25px;padding: 10px;">
+   
+    </i>
    <div>
        <el-timeline>
     <el-timeline-item
@@ -17,7 +13,8 @@
       :color="activity.color"
       :size="lage"
       :timestamp="activity.timestamp">
-      {{activity.content}}
+        <p>{{activity.content}}</p>
+        <p>{{activity.intro}}</p>
     </el-timeline-item>
   </el-timeline>
    </div>
@@ -35,10 +32,12 @@ export default {
         }, {
           content: '卖出明阳智能：100',
           timestamp: '2018-03-22 20:46',
+          intro: '',
           color: 'lightgreen'
         }, {
           content: '买入华钰：200',
           timestamp: '2018-03-22 20:46',
+           intro: '昨天期货锌涨价，外加美股资源股大涨所以感觉国内资源股也会长，想做个断线套点钱',
           color: 'red'
         }]
     };
