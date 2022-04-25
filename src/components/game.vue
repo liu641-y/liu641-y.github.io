@@ -7,12 +7,14 @@
       style="cursor: pointer; color: blue; font-size: 25px; padding: 10px;float: left;"
     >
     </i>
-      <div class="title">game</div>
+      <div class="title">猜单词</div>
     <div class="rules">
+      
       游戏规则：
-      请输入六个字母的单词，且字母不重复。绿色为字母正确，棕色为单词含有该字母但位置不正确，红色为单词中不包含此字母
+      单词有六个字母，字母不重复。单词中没有粉色字母，包含棕色字母但位置不正确，绿色为完全正确。
+      <div>你只有五次机会，单词每日更新</div>
     </div>
-  
+     
 
     <div class="row" v-for="arow in upletter">
       <span :class="alet.color" v-for="alet in arow">{{ alet.text }}</span>
@@ -295,7 +297,7 @@ export default {
 .title{
   text-align: center;
   font-size: 25px;
-  padding: 20px;
+  padding: 10px;
 }
 .row {
   display: flex;
@@ -325,8 +327,9 @@ export default {
 
   text-align: center;
   width: 60%;
+  font-size: 15px;
   margin: auto;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 
 .inp {

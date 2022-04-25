@@ -1,21 +1,28 @@
 <template>
   <div id="firpage">
-     <!-- <div @click="jumpto('/nag')" class="jumpto">学习记录</div> -->
+ 
+    
+   
     <div @click="jumpto('/game')" class="jumpto">play game click me</div>
     <div @click="jumpto('/about')" class="jumpto">about me</div>
     <div @click="jumpto('/book')" class="jumpto">book list</div>
-    <div @click="jumpto('/shares')" class="jumpto">操作记录</div>
-   
+  
+   <div @click="jumpto('/demo')" class="jumpto">demo</div>
     <span class="intr" v-for="letter in intrarr">{{ letter }}</span>
-     <div><i class="el-icon-football"></i></div>
+    <div><i class="el-icon-football"></i></div>
   </div>
+
+  <!-- <div class="all">
+   <div class="left">在左边</div>
+   <div class="right">在右边</div>
+ </div> -->
 </template>
 <script>
 export default {
   name: "first",
   data() {
     return {
-      intr: "你好，我是LSY，这个网站用来放一些小东西",
+      intr: "啊啊啊啊啊啊啊啊啊啊,毁灭吧",
       intrarr: [],
     };
   },
@@ -29,19 +36,27 @@ export default {
       this.$router.push(ad);
     },
     listAnimate() {
+       this.anime({
+        targets: "#firpage",
+       rotate: "1turn",
+        delay: this.anime.stagger(300),
+        easing: "linear",
+        // loop: true,
+      });
       this.anime({
         targets: ".intr",
-        fontSize: "30px",
-        delay: this.anime.stagger(100),
+        fontSize: "10px",
+        delay: this.anime.stagger(300),
         easing: "linear",
       });
       this.anime({
         targets: ".el-icon-football",
-        top: '250',
-        direction: 'alternate',
-        rotate: "0.5turn",
+        top: "250",
+        fontSize: "30px",
+        direction: "alternate",
+        rotate: "1turn",
         loop: true,
-  easing: 'cubicBezier(.5, .05, .1, .3)',
+        easing: "cubicBezier(.5, .05, .1, .3)",
         duration: 1000,
       });
     },
@@ -56,8 +71,28 @@ export default {
 </script>
 
 <style lang="less" scoped>
-#firpage {
+  .all{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    text-align: center;
   
+    .left{
+      background-color: white;
+      height: 100%;
+      width: 50%;
+      color: black;
+      
+    }
+    .right{
+      background-color: black;
+       height: 100%;
+      width: 50%;
+      color: white;
+    }
+  }
+#firpage {
+
   color: white;
   // overflow: hidden;
   font-weight: bolder;

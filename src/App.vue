@@ -57,7 +57,7 @@ export default {
           pa.fillText("", this.x, this.y); //文字的位置   空心文字
           pa.fillStyle =
             "rgb(" + this.color1 + "," + this.color2 + "," + this.color3 + ")";
-          pa.fillStyle = "red";
+          pa.fillStyle = "lightgreen";
           pa.globalAlpha = this.a;
           pa.arc(this.x, this.y, this.r, 0, Math.PI * 2);
           pa.fill();
@@ -67,7 +67,7 @@ export default {
           this.x += this.vx;
           this.y += this.vy;
           this.r += 0.01;
-          this.a *= 0.93;
+          this.a *= 0.97;
           this.color1 = (this.color1 + random(0, 10)) % 256;
           this.color2 = (this.color2 + random(0, 10)) % 256;
           this.color3 = (this.color3 + random(0, 10)) % 256;

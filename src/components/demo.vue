@@ -1,7 +1,6 @@
 <template>
   <div id="firpage">
-      <i class="el-icon-s-home" @click="jumpto('/')" style="cursor: pointer; color: blue ;font-size: 25px;padding: 10px;">
-   
+    <i class="el-icon-s-home" @click="jumpto('/')" style="cursor: pointer; color: blue ;font-size: 25px;padding: 10px;position:fixed;top: 5px;left: 5px">
     </i>
     <li
       v-for="(ali, index) in 6"
