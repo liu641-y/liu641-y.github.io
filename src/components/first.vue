@@ -7,7 +7,7 @@
     <div @click="jumpto('/about')" class="jumpto">about me</div>
     <div @click="jumpto('/book')" class="jumpto">book list</div>
   
-   <div @click="jumpto('/demo')" class="jumpto">demo</div>
+   <!-- <div @click="jumpto('/demo')" class="jumpto">demo</div> -->
     <span class="intr" v-for="letter in intrarr">{{ letter }}</span>
     <div><i class="el-icon-football"></i></div>
   </div>
