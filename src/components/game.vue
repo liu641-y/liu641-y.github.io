@@ -41,7 +41,7 @@
       />
     </form>
     <div class="butt">
-      <button @click="def()" class="confirm">确定</button>
+      <button @click="def()" class="confirm"> 确定</button>
     </div>
     <div v-for="(wor, index) in enterarr" :key="index">
       <span v-for="(t, ind) in wor" :key="ind">
@@ -249,6 +249,8 @@ export default {
             this.deal(this.inputarr[i].value, this.letterarr[i]);
             this.inputarr[i].value = "";
           }
+
+          this.$forceUpdate();
         }
         if (this.rightletter == 6) {
           this.$message({
