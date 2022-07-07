@@ -1,23 +1,32 @@
 <template>
   <div class="mypage">
-      <div class="days">第{{ days }}</div>
+    <div class="days">第{{ days }}</div>
     <i
       class="el-icon-s-home"
       @click="jumpto('/')"
-      style="cursor: pointer; color: blue; font-size: 25px; padding: 10px;float: left;"
+      style="
+        cursor: pointer;
+        color: blue;
+        font-size: 25px;
+        padding: 10px;
+        float: left;
+      "
     >
     </i>
-      <div class="title">猜单词</div>
+    <div class="title">猜单词</div>
     <div class="rules">
-      
       游戏规则：
       单词有六个字母，字母不重复。单词中没有粉色字母，包含棕色字母但位置不正确，绿色为完全正确。
       <div>你只有五次机会，单词每日更新</div>
     </div>
-     
 
     <div class="row" v-for="arow in upletter">
-      <span :class="alet.color" v-for="alet in arow">{{ alet.text }}</span>
+      <div v-for="alet in arow">
+        <span v-if="alet.color == 'have'" class="have">{{ alet.text}}</span>
+        
+        <span v-else-if="alet.color == 'true'" class="true">{{ alet.text}}</span>
+         <span v-else class="unhave">{{ alet.text}}</span>
+      </div>
     </div>
 
     <form name="myform" class="myform">
@@ -260,30 +269,28 @@ export default {
       }
     },
     deal(invalue, num) {
-      let choupzm = null;
+      
       this.upletter.forEach((ele) => {
         ele.forEach((item) => {
           if (item.text == invalue) {
-            choupzm = item;
+            if (invalue == num) {
+              this.rightletter++;
+              item.color = "true";
+            } else {
+              let ifhave = false;
+              this.letterarr.forEach((ele) => {
+                if (invalue == ele) {
+                  item.color = "have";
+                  ifhave = true;
+                }
+              });
+              if (!ifhave) {
+                item.color = "unhave";
+              }
+            }
           }
         });
       });
-
-      if (invalue == num) {
-        this.rightletter++;
-        choupzm.color = "true";
-      } else {
-        let ifhave = false;
-        this.letterarr.forEach((ele) => {
-          if (invalue == ele) {
-            choupzm.color = "have";
-            ifhave = true;
-          }
-        });
-        if (!ifhave) {
-          choupzm.color = "unhave";
-        }
-      }
     },
   },
 };
@@ -294,7 +301,7 @@ export default {
   /* background-color: white; */
   color: white;
 }
-.title{
+.title {
   text-align: center;
   font-size: 25px;
   padding: 10px;
@@ -318,18 +325,17 @@ export default {
 
   color: white;
 }
-.days{
+.days {
   text-align: center;
   float: right;
   padding: 10px;
 }
 .rules {
-
   text-align: center;
   width: 60%;
   font-size: 15px;
   margin: auto;
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .inp {

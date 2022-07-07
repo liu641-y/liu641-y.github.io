@@ -8,10 +8,7 @@
 <script>
 export default {
   name: "App",
-  methods: {
-    hh() {
-      console.log();
-    },
+  methods: { 
     aldraw() {
       var pat = document.getElementById("flo");
       var app = document.getElementById("app");
