@@ -6,23 +6,19 @@
     <div @click="jumpto('/game')" class="jumpto">play game click me</div>
     <div @click="jumpto('/about')" class="jumpto">about me</div>
     <div @click="jumpto('/book')" class="jumpto">book list</div>
-  
-   <!-- <div @click="jumpto('/demo')" class="jumpto">demo</div> -->
-    <span class="intr" v-for="letter in intrarr">{{ letter }}</span>
-    <div><i class="el-icon-football"></i></div>
+    <!-- <div @click="jumpto('/demo')" class="jumpto">small demo</div> -->
+    <span class="intr" v-for="(letter,ind) in intrarr" :key="ind">{{ letter }}</span>
+   
   </div>
 
-  <!-- <div class="all">
-   <div class="left">在左边</div>
-   <div class="right">在右边</div>
- </div> -->
+ 
 </template>
 <script>
 export default {
   name: "first",
   data() {
     return {
-      intr: "啊啊啊啊啊啊啊啊啊啊,毁灭吧",
+      intr: "Veni,vidi,vici.   ---Caesar",
       intrarr: [],
     };
   },
@@ -36,29 +32,23 @@ export default {
       this.$router.push(ad);
     },
     listAnimate() {
-       this.anime({
-        targets: "#firpage",
-       rotate: "1turn",
-        delay: this.anime.stagger(300),
-        easing: "linear",
-        // loop: true,
-      });
+     
       this.anime({
         targets: ".intr",
-        fontSize: "10px",
+        opacity: "1",
         delay: this.anime.stagger(300),
         easing: "linear",
       });
-      this.anime({
-        targets: ".el-icon-football",
-        top: "250",
-        fontSize: "30px",
-        direction: "alternate",
-        rotate: "1turn",
-        loop: true,
-        easing: "cubicBezier(.5, .05, .1, .3)",
-        duration: 1000,
-      });
+      // this.anime({
+      //   targets: ".el-icon-football",
+      //   top: "250",
+      //   fontSize: "30px",
+      //   direction: "alternate",
+      //   rotate: "1turn",
+      //   loop: true,
+      //   easing: "cubicBezier(.5, .05, .1, .3)",
+      //   duration: 1000,
+      // });
     },
   },
   created() {
@@ -92,15 +82,21 @@ export default {
     }
   }
 #firpage {
-
+  padding-top: 80px;
   color: white;
   // overflow: hidden;
+  text-align: center;
   font-weight: bolder;
   .jumpto {
     cursor: pointer;
+    height: 50px;
+    line-height: 50px;
+    margin-bottom: 30px;
+
   }
   .intr {
-    font-size: 0;
+    opacity: 0;
+    color: red;
   }
   .el-icon-football {
     // right: 20px;

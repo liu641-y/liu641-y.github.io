@@ -25,10 +25,13 @@ export default {
       //   cirArry.length = 0;
       // });
       app.addEventListener("mousemove", function (e) {
-        cirArry.push(new cir(e.clientX, e.clientY, 5));
+        if(cirArry.length < 10){
+ cirArry.push(new cir(e.clientX, e.clientY, 5));
+        }
+       
       });
       app.addEventListener("touchstart", function (e) {
-        for (i = 0; i < 8; i++) {
+        for (i = 0; i < 1; i++) {
           cirArry.push(new cir(e.clientX, e.clientY, 30));
         }
       });
@@ -54,7 +57,7 @@ export default {
           pa.fillText("", this.x, this.y); //文字的位置   空心文字
           pa.fillStyle =
             "rgb(" + this.color1 + "," + this.color2 + "," + this.color3 + ")";
-          pa.fillStyle = "lightgreen";
+          pa.fillStyle = "pink";
           pa.globalAlpha = this.a;
           pa.arc(this.x, this.y, this.r, 0, Math.PI * 2);
           pa.fill();
@@ -64,7 +67,7 @@ export default {
           this.x += this.vx;
           this.y += this.vy;
           this.r += 0.01;
-          this.a *= 0.97;
+          this.a *= 0.98;
           this.color1 = (this.color1 + random(0, 10)) % 256;
           this.color2 = (this.color2 + random(0, 10)) % 256;
           this.color3 = (this.color3 + random(0, 10)) % 256;

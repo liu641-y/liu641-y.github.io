@@ -70,6 +70,7 @@ export default {
   perspective: 3000px;
   overflow: hidden;
   display: flex;
+  flex-direction: column;
   justify-content: space-around;
   align-items: center;
   transform-style: preserve-3d;

@@ -6,6 +6,7 @@ Vue.use(Router)
 
 export default new Router({
   routes: [
+  
     {
       path: '/game',
       name: 'game',
@@ -24,17 +25,9 @@ export default new Router({
       name: 'demo',
       component: resolve => require(['@/components/demo'], resolve),
     },{
-      path: '/nag',
-      name: 'nag',
-      component: resolve => require(['@/components/nag'], resolve),
-    },{
       path: '/book',
       name: 'book',
       component: resolve => require(['@/components/book'], resolve),
-    },{
-      path: '/shares',
-      name: 'shares',
-      component: resolve => require(['@/components/shares'], resolve),
-    }
+    } 
   ]
 })

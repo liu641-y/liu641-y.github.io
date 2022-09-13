@@ -7,25 +7,38 @@
       style="
         cursor: pointer;
         color: blue;
+        position: fixed;
+        left: 0;
+        top: 0;
         font-size: 25px;
         padding: 10px;
-        float: left;
       "
     >
     </i>
     <div class="title">猜单词</div>
-    <div class="rules">
+    <el-tooltip
+      class="item"
+      effect="dark"
+      content="单词有六个字母，字母不重复。单词中没有粉色字母，包含棕色字母但位置不正确，绿色为完全正确。你只有五次机会，单词每日更新"
+      placement="bottom"
+    >
+      <span class="rules"> 游戏规则</span>
+    </el-tooltip>
+
+    <!-- <div class="rules">
       游戏规则：
-      单词有六个字母，字母不重复。单词中没有粉色字母，包含棕色字母但位置不正确，绿色为完全正确。
+      单词有六个字母，字母不重复。单词中没有粉色字母，包含棕色字母但位置不正确，绿色为完全正确。你只有五次机会，单词每日更新
       <div>你只有五次机会，单词每日更新</div>
-    </div>
+    </div> -->
 
     <div class="row" v-for="arow in upletter">
       <div v-for="alet in arow">
-        <span v-if="alet.color == 'have'" class="have">{{ alet.text}}</span>
-        
-        <span v-else-if="alet.color == 'true'" class="true">{{ alet.text}}</span>
-         <span v-else class="unhave">{{ alet.text}}</span>
+        <span v-if="alet.color == 'have'" class="have">{{ alet.text }}</span>
+
+        <span v-else-if="alet.color == 'true'" class="true">{{
+          alet.text
+        }}</span>
+        <span v-else class="unhave">{{ alet.text }}</span>
       </div>
     </div>
 
@@ -41,7 +54,7 @@
       />
     </form>
     <div class="butt">
-      <button @click="def()" class="confirm"> 确定</button>
+      <button @click="def()" class="confirm">确定</button>
     </div>
     <div v-for="(wor, index) in enterarr" :key="index">
       <span v-for="(t, ind) in wor" :key="ind">
@@ -192,8 +205,7 @@ export default {
     let nowtime = new Date();
     let firstdays = nowtime.getTime() - firstwechat;
     this.days = parseInt(firstdays / (1000 * 60 * 60 * 24));
-    this.world = this.undoublearr[this.days - 312].toLowerCase();
-    console.log(this.world, "今日单词");
+    this.world = this.undoublearr[this.days - 312].toLowerCase(); 
     this.letterarr = this.world.split("");
   },
   methods: {
@@ -271,7 +283,6 @@ export default {
       }
     },
     deal(invalue, num) {
-      
       this.upletter.forEach((ele) => {
         ele.forEach((item) => {
           if (item.text == invalue) {
@@ -308,6 +319,11 @@ export default {
   font-size: 25px;
   padding: 10px;
 }
+.title span {
+  position: absolute;
+  /* right: 50px; */
+  font-size: 10px;
+}
 .row {
   display: flex;
   justify-content: center;
@@ -329,15 +345,16 @@ export default {
 }
 .days {
   text-align: center;
-  float: right;
+  position: absolute;
+  right: 0;
   padding: 10px;
 }
 .rules {
-  text-align: center;
-  width: 60%;
-  font-size: 15px;
-  margin: auto;
-  margin-bottom: 10px;
+  position: absolute;
+  left: 50px;
+  top: 10px;
+  line-height: 25px;
+  font-size: 13px;
 }
 
 .inp {

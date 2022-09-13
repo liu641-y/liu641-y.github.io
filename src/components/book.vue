@@ -3,7 +3,7 @@
     <i
       class="el-icon-s-home"
       @click="jumpto('/')"
-      style="cursor: pointer; color: blue;position:fixed;left: 0; font-size: 25px; padding: 10px"
+      style="cursor: pointer; color: blue;position:fixed;left: 0;top:0; font-size: 25px; padding: 10px"
     >
     </i>
     <div class="booktitle">book list</div>
@@ -47,6 +47,10 @@ export default {
 <style lang="less" scoped>
 #aboutMe {
   color: white;
+  width: 600px;
+  padding-top: 40px;
+  margin: auto;
+ 
   .booktitle {
     font-size: 25px;
     text-align: center;
@@ -56,11 +60,11 @@ export default {
     font-size: 20px;
     color: white;
     background: none;
-    justify-content: center;
+    // justify-content: center;
     border: 0;
   }
   /deep/ .el-collapse-item__arrow {
-    margin: 0;
+    // margin: 0;
     color: red;
     font-weight: bolder;
     // margin-left:40px;
