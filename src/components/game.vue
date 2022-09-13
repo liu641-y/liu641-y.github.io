@@ -16,12 +16,13 @@
     >
     </i>
     <div class="title">猜单词</div>
-   
+
     <el-popover
-    placement="bottom" 
-    width="200"
-    trigger="click"
-    content="单词有六个字母，字母不重复。单词中没有粉色字母，包含棕色字母但位置不正确，绿色为完全正确。你只有五次机会，单词每日更新">
+      placement="bottom"
+      width="200"
+      trigger="click"
+      content="单词有六个字母，字母不重复。单词中没有粉色字母，包含棕色字母但位置不正确，绿色为完全正确。你只有五次机会，单词每日更新"
+    >
       <span class="rules" slot="reference"> 游戏规则</span>
     </el-popover>
 
@@ -33,12 +34,7 @@
 
     <div class="row" v-for="arow in upletter">
       <div v-for="alet in arow">
-        <span v-if="alet.color == 'have'" class="have">{{ alet.text }}</span>
-
-        <span v-else-if="alet.color == 'true'" class="true">{{
-          alet.text
-        }}</span>
-        <span v-else class="unhave">{{ alet.text }}</span>
+        <span :class="alet.text" class="unhave">{{ alet.text }}</span>
       </div>
     </div>
 
@@ -58,11 +54,12 @@
     </div>
     <div v-for="(wor, index) in enterarr" :key="index">
       <span v-for="(t, ind) in wor" :key="ind">
-        <span v-if="t == world[ind]" class="downlet true">{{ t }}</span>
+        <span :class="t" class="downlet">{{ t }}</span>
+        <!-- <span v-if="t == world[ind]" class="downlet true">{{ t }}</span>
         <span v-else-if="world.indexOf(t) != -1" class="downlet have">{{
           t
         }}</span>
-        <span v-else class="downlet unhave">{{ t }}</span>
+        <span v-else class="downlet unhave">{{ t }}</span> -->
       </span>
     </div>
   </div>
@@ -205,7 +202,7 @@ export default {
     let nowtime = new Date();
     let firstdays = nowtime.getTime() - firstwechat;
     this.days = parseInt(firstdays / (1000 * 60 * 60 * 24));
-    this.world = this.undoublearr[this.days - 312].toLowerCase(); 
+    this.world = this.undoublearr[this.days - 312].toLowerCase();
     this.letterarr = this.world.split("");
   },
   methods: {
@@ -289,16 +286,27 @@ export default {
             if (invalue == num) {
               this.rightletter++;
               item.color = "true";
+              this.anime({
+                targets: '.' +item.text ,
+                backgroundColor: "#67c23a",
+                easing: "easeInOutQuad",
+              });
             } else {
               let ifhave = false;
               this.letterarr.forEach((ele) => {
                 if (invalue == ele) {
                   item.color = "have";
+                  this.anime({
+                    targets: '.' +item.text ,
+                    backgroundColor: "#e6a23c",
+                    easing: "easeInOutQuad",
+                  });
+
                   ifhave = true;
                 }
               });
               if (!ifhave) {
-                item.color = "unhave";
+                item.color = "unhave"; 
               }
             }
           }
@@ -360,14 +368,15 @@ export default {
 
 .inp {
   /* display: inline-block; */
-  flex-grow: 0;
-  width: 35px;
+
+  width: 10vw;
   height: 35px;
-  line-height: 35px;
+  line-height: 25px;
   font-size: 30px;
   text-align: center;
-  margin: 0 5px;
+  margin: 0 1px;
   border-radius: 8px;
+  padding: 0;
 }
 
 .butt,
@@ -377,7 +386,7 @@ export default {
 }
 
 .downlet {
-  background-color: black;
+ background-color: #f56c6c;
   height: 40px;
   line-height: 40px;
   width: 40px;

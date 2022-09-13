@@ -31,9 +31,9 @@ export default {
        
       });
       app.addEventListener("touchstart", function (e) {
-        for (i = 0; i < 1; i++) {
-          cirArry.push(new cir(e.clientX, e.clientY, 30));
-        }
+       
+          cirArry.push(new cir(e.clientX, e.clientY, 5));
+        
       });
 
       function cir(x, y, r) {
@@ -95,7 +95,7 @@ export default {
     },
   },
   mounted() {
-    this.aldraw();
+    // this.aldraw();
   },
 };
 </script>
