@@ -16,14 +16,14 @@
     >
     </i>
     <div class="title">猜单词</div>
-    <el-tooltip
-      class="item"
-      effect="dark"
-      content="单词有六个字母，字母不重复。单词中没有粉色字母，包含棕色字母但位置不正确，绿色为完全正确。你只有五次机会，单词每日更新"
-      placement="bottom"
-    >
-      <span class="rules"> 游戏规则</span>
-    </el-tooltip>
+   
+    <el-popover
+    placement="bottom" 
+    width="200"
+    trigger="click"
+    content="单词有六个字母，字母不重复。单词中没有粉色字母，包含棕色字母但位置不正确，绿色为完全正确。你只有五次机会，单词每日更新">
+      <span class="rules" slot="reference"> 游戏规则</span>
+    </el-popover>
 
     <!-- <div class="rules">
       游戏规则：
@@ -355,6 +355,7 @@ export default {
   top: 10px;
   line-height: 25px;
   font-size: 13px;
+  cursor: pointer;
 }
 
 .inp {
