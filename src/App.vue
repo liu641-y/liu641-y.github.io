@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" :class="classObject">
     <canvas id="flo"></canvas>
     <router-view />
   </div>
@@ -8,7 +8,28 @@
 <script>
 export default {
   name: "App",
-  methods: { 
+  data() {
+  return {
+    classObject: {
+      phone: false,
+      pc: true ,
+    }
+  }
+},
+  methods: {
+    fit() {
+      if (
+        /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+          navigator.userAgent
+        )
+      ) {
+       this.classObject.phone = true
+       this.classObject.pc = false
+      } else {
+         this.classObject.phone = false
+       this.classObject.pc = true
+      }
+    },
     aldraw() {
       var pat = document.getElementById("flo");
       var app = document.getElementById("app");
@@ -25,15 +46,12 @@ export default {
       //   cirArry.length = 0;
       // });
       app.addEventListener("mousemove", function (e) {
-        if(cirArry.length < 10){
- cirArry.push(new cir(e.clientX, e.clientY, 5));
+        if (cirArry.length < 10) {
+          cirArry.push(new cir(e.clientX, e.clientY, 5));
         }
-       
       });
       app.addEventListener("touchstart", function (e) {
-       
-          cirArry.push(new cir(e.clientX, e.clientY, 5));
-        
+        cirArry.push(new cir(e.clientX, e.clientY, 5));
       });
 
       function cir(x, y, r) {
@@ -57,7 +75,7 @@ export default {
           pa.fillText("", this.x, this.y); //文字的位置   空心文字
           pa.fillStyle =
             "rgb(" + this.color1 + "," + this.color2 + "," + this.color3 + ")";
-          pa.fillStyle = "pink";
+          pa.fillStyle = "yellow";
           pa.globalAlpha = this.a;
           pa.arc(this.x, this.y, this.r, 0, Math.PI * 2);
           pa.fill();
@@ -95,11 +113,21 @@ export default {
     },
   },
   mounted() {
-    // this.aldraw();
+    this.fit();
+    this.aldraw();
   },
 };
 </script>
 <style>
+.backhome{
+  cursor: pointer;
+        color: red;
+        position: fixed;
+        left: 0;
+        top: 0;
+        font-size: 25px;
+        padding: 10px;
+}
 body,
 html,
 #app,
@@ -124,6 +152,6 @@ canvas {
   top: 0;
   left: 0;
   /* opacity: 0; */
-  background-color: black;
+  background-color: rgb(104, 104, 104);
 }
 </style>

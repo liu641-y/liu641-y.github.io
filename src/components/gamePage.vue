@@ -1,20 +1,11 @@
 <template>
   <div class="mypage">
     <div class="days">第{{ days }}</div>
-    <i
-      class="el-icon-s-home"
-      @click="jumpto('/')"
-      style="
-        cursor: pointer;
-        color: blue;
-        position: fixed;
-        left: 0;
-        top: 0;
-        font-size: 25px;
-        padding: 10px;
-      "
+    <!-- <i
+      class="el-icon-s-home  backhome"
+      @click="jumpto('/')" 
     >
-    </i>
+    </i> -->
     <div class="title">猜单词</div>
 
     <el-popover
@@ -318,6 +309,9 @@ export default {
 </script>
 
 <style scoped>
+.phone .inp{
+  width: 10vw;
+}
 .mypage {
   /* background-color: white; */
   color: white;
@@ -369,7 +363,7 @@ export default {
 .inp {
   /* display: inline-block; */
 
-  width: 10vw;
+  width: 35px;
   height: 35px;
   line-height: 25px;
   font-size: 30px;

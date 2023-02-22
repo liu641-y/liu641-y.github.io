@@ -8,26 +8,30 @@ export default new Router({
   routes: [
   
     {
-      path: '/game',
-      name: 'game',
-      component: resolve => require(['@/components/game'], resolve),
+      path: '/gamePage',
+      name: 'gamePage',
+      component: resolve => require(['@/components/gamePage'], resolve),
      
     },{
       path: '/',
-      name: 'first',
-      component: resolve => require(['@/components/first'], resolve),
+      name: 'index',
+      component: resolve => require(['@/components/index'], resolve),
     },{
-      path: '/about',
-      name: 'about',
-      component: resolve => require(['@/components/about'], resolve),
+      path: '/aboutPage',
+      name: 'aboutPage',
+      component: resolve => require(['@/components/aboutPage'], resolve),
     },{
-      path: '/demo',
-      name: 'demo',
-      component: resolve => require(['@/components/demo'], resolve),
+      path: '/demoPage',
+      name: 'demoPage',
+      component: resolve => require(['@/components/demoPage'], resolve),
     },{
-      path: '/book',
-      name: 'book',
-      component: resolve => require(['@/components/book'], resolve),
-    } 
+      path: '/articlePage',
+      name: 'articlePage',
+      component: resolve => require(['@/components/articlePage'], resolve),
+    } ,{
+      path: '/lsy',
+      name: 'lsy',
+      component: resolve => require(['@/components/write'], resolve),
+    }
   ]
 })
