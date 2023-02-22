@@ -10,7 +10,7 @@
     <div class="title">
       <span>性别：</span><span>男</span><span>年龄：</span><span>24</span>
     </div>
-    <div>个人说明：做前端的，最近对炒股比较感兴趣。</div>
+    <div>个人说明：做前端的，考驾照辞职，最近赋闲在家</div>
   </div>
 </template>
 <script>
