@@ -12,7 +12,7 @@
       placement="bottom"
       width="200"
       trigger="click"
-      content="单词有六个字母，字母不重复。单词中没有粉色字母，包含棕色字母但位置不正确，绿色为完全正确。你只有五次机会，单词每日更新"
+      content="猜单词，你每天有五次机会。单词由六个字母组成，字母不重复。每次输入单词后，会给出提示。颜色提示为黄色表示单词中没有该字母，橙色表示单词含有该字母，字母位置错误，绿色表示字母和字母位置均正确。单词每日更新。"
     >
       <span class="rules" slot="reference"> 游戏规则</span>
     </el-popover>
@@ -25,7 +25,12 @@
 
     <div class="row" v-for="arow in upletter">
       <div v-for="alet in arow">
-        <span :class="alet.text" class="unhave">{{ alet.text }}</span>
+    
+        <span v-if="alet.color == 'have'" class="have">{{ alet.text }}</span> 
+        <span v-else-if="alet.color == 'true'" class="true">{{
+          alet.text
+        }}</span>
+        <span v-else class="unhave">{{ alet.text }}</span>
       </div>
     </div>
 
@@ -45,12 +50,12 @@
     </div>
     <div v-for="(wor, index) in enterarr" :key="index">
       <span v-for="(t, ind) in wor" :key="ind">
-        <span :class="t" class="downlet">{{ t }}</span>
-        <!-- <span v-if="t == world[ind]" class="downlet true">{{ t }}</span>
+        <!-- <span :class="t" class="downlet">{{ t }}</span> -->
+        <span v-if="t == world[ind]" class="downlet true">{{ t }}</span>
         <span v-else-if="world.indexOf(t) != -1" class="downlet have">{{
           t
         }}</span>
-        <span v-else class="downlet unhave">{{ t }}</span> -->
+        <span v-else class="downlet unhave">{{ t }}</span>
       </span>
     </div>
   </div>
@@ -183,7 +188,7 @@ export default {
       inputarr: [], //input 数组
       world: "",
       letterarr: "", //正确单词的字母数组
-      alright: false,
+      alright: false, //已经知道正确答案了
     };
   },
   created() {
@@ -200,9 +205,11 @@ export default {
     jumpto(ad) {
       this.$router.push(ad);
     },
+    // 聚焦时删除当前输入
     befocus(ind) {
       this.inputarr[ind - 1].value = "";
     },
+    // 按下键盘事件
     upkey(e, i) {
       let reg = /^[A-Za-z]/;
       // 输入字母后跳到下一个
@@ -223,6 +230,7 @@ export default {
         }
       }
     },
+    // 确定键操作
     def() {
       if (this.alright) {
       } else {
@@ -239,7 +247,7 @@ export default {
         });
         if (!ifInWorldArr) {
           this.$message.error("请输入正确的单词");
-          navigator.vibrate(1000); // 手机震动
+          // navigator.vibrate(1000); // 手机震动
           for (let i = 0; i < 6; i++) {
             this.inputarr[i].value = "";
           }
@@ -270,34 +278,25 @@ export default {
         }
       }
     },
+    // 处理函数
     deal(invalue, num) {
       this.upletter.forEach((ele) => {
         ele.forEach((item) => {
           if (item.text == invalue) {
             if (invalue == num) {
               this.rightletter++;
-              item.color = "true";
-              this.anime({
-                targets: '.' +item.text ,
-                backgroundColor: "#67c23a",
-                easing: "easeInOutQuad",
-              });
+              item.color = "true"; 
+              // });
             } else {
               let ifhave = false;
               this.letterarr.forEach((ele) => {
                 if (invalue == ele) {
-                  item.color = "have";
-                  this.anime({
-                    targets: '.' +item.text ,
-                    backgroundColor: "#e6a23c",
-                    easing: "easeInOutQuad",
-                  });
-
+                  item.color = "have"; 
                   ifhave = true;
                 }
               });
               if (!ifhave) {
-                item.color = "unhave"; 
+                item.color = "unhave";
               }
             }
           }
@@ -309,7 +308,7 @@ export default {
 </script>
 
 <style scoped>
-.phone .inp{
+.phone .inp {
   width: 10vw;
 }
 .mypage {
@@ -353,10 +352,12 @@ export default {
 }
 .rules {
   position: absolute;
-  left: 50px;
-  top: 10px;
+  left: 0;
+  top: 0;
+  padding: 10px;
   line-height: 25px;
-  font-size: 13px;
+  /* font-size: 13px; */
+  color: goldenrod;
   cursor: pointer;
 }
 
@@ -380,7 +381,7 @@ export default {
 }
 
 .downlet {
- background-color: #f56c6c;
+  background-color: #f56c6c;
   height: 40px;
   line-height: 40px;
   width: 40px;

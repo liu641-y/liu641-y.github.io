@@ -94,7 +94,7 @@ export default {
 
       function rander() {
         
-        if(cirArry.length < 2){
+        if(cirArry.length < 1){
           cirArry.push(new cir(random(0, pat.width), random(0, pat.height), 5));
         }
         pa.clearRect(0, 0, pat.width, pat.height);
