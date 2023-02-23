@@ -1,9 +1,10 @@
 <template>
   <div id="firpage">
-    <div @click="jumpto('/articlePage')" class="jumpto">文章列表</div>
     <div @click="jumpto('/aboutPage')" class="jumpto">个人介绍</div>
+    <div @click="jumpto('/articlePage')" class="jumpto">文章列表</div>
     <!-- <div @click="jumpto('/demo')" class="jumpto">人类观察笔记</div> -->
-        <div @click="jumpto('/gamePage')" class="jumpto">其他</div>
+    <div @click="jumpto('/gamePage')" class="jumpto">一个小游戏</div>
+    <div @click="jumpto('/mywx')" class="jumpto">我的微信小程序</div>
     <!-- <div @click="jumpto('/demo')" class="jumpto">small demo</div> -->
     <div class="caesar">
       <span class="intr" v-for="(letter, ind) in intrarr" :key="ind">{{

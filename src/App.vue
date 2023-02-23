@@ -9,13 +9,13 @@
 export default {
   name: "App",
   data() {
-  return {
-    classObject: {
-      phone: false,
-      pc: true ,
-    }
-  }
-},
+    return {
+      classObject: {
+        phone: false,
+        pc: true,
+      },
+    };
+  },
   methods: {
     fit() {
       if (
@@ -23,11 +23,11 @@ export default {
           navigator.userAgent
         )
       ) {
-       this.classObject.phone = true
-       this.classObject.pc = false
+        this.classObject.phone = true;
+        this.classObject.pc = false;
       } else {
-         this.classObject.phone = false
-       this.classObject.pc = true
+        this.classObject.phone = false;
+        this.classObject.pc = true;
       }
     },
     aldraw() {
@@ -93,6 +93,10 @@ export default {
       };
 
       function rander() {
+        
+        if(cirArry.length < 2){
+          cirArry.push(new cir(random(0, pat.width), random(0, pat.height), 5));
+        }
         pa.clearRect(0, 0, pat.width, pat.height);
         cirArry.forEach(function (ele, index) {
           ele.draw();
@@ -119,14 +123,14 @@ export default {
 };
 </script>
 <style>
-.backhome{
+.backhome {
   cursor: pointer;
-        color: red;
-        position: fixed;
-        left: 0;
-        top: 0;
-        font-size: 25px;
-        padding: 10px;
+  color: red;
+  position: fixed;
+  left: 0;
+  top: 0;
+  font-size: 25px;
+  padding: 10px;
 }
 body,
 html,

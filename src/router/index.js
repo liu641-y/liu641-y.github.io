@@ -32,6 +32,10 @@ export default new Router({
       path: '/lsy',
       name: 'lsy',
       component: resolve => require(['@/components/write'], resolve),
+    },{
+      path: '/mywx',
+      name: 'mywx',
+      component: resolve => require(['@/components/mywxPage'], resolve),
     }
   ]
 })
