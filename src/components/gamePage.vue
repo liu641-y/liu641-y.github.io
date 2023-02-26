@@ -14,7 +14,7 @@
       trigger="click"
       content="猜单词，你每天有五次机会。单词由六个字母组成，字母不重复。每次输入单词后，会给出提示。颜色提示为黄色表示单词中没有该字母，橙色表示单词含有该字母，字母位置错误，绿色表示字母和字母位置均正确。单词每日更新。"
     >
-      <span class="rules" slot="reference"> 游戏规则</span>
+      <div class="rules" slot="reference"> 游戏规则</div>
     </el-popover>
 
     <!-- <div class="rules">
@@ -194,7 +194,7 @@ export default {
   created() {
     this.undoublearr = worldlist;
     this.inputarr = document.getElementsByClassName("inp");
-    let firstwechat = new Date("2021/04/09/23:36").getTime();
+    let firstwechat = new Date("2021/04/09/").getTime();
     let nowtime = new Date();
     let firstdays = nowtime.getTime() - firstwechat;
     this.days = parseInt(firstdays / (1000 * 60 * 60 * 24));
@@ -229,10 +229,21 @@ export default {
           }
         }
       }
+      if (e.keyCode ==13) {
+        // if (i != 0) {
+        //   if (this.inputarr[i].value == "") {
+        //     this.inputarr[i - 1].value = "";
+        //     this.inputarr[i - 1].focus();
+        //   }
+        // }
+        this.def();
+      }
     },
     // 确定键操作
     def() {
       if (this.alright) {
+        this.$message.error("您已知晓正确答案");
+
       } else {
         this.rightletter = 0;
         let enterWorld = "",
@@ -310,6 +321,8 @@ export default {
 <style scoped>
 .phone .inp {
   width: 10vw;
+  height: 10vw;
+  border: none;
 }
 .mypage {
   /* background-color: white; */
@@ -318,8 +331,30 @@ export default {
 .title {
   text-align: center;
   font-size: 25px;
-  padding: 10px;
+   padding: 10px;
+   height: 32px;
+
 }
+.days {
+  text-align: center;
+  position: absolute;
+  right: 0;
+  padding: 10px;
+  height: 32px;
+}
+.rules {
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: 10px;
+  line-height: 25px;
+  /* font-size: 13px; */
+  color: goldenrod;
+  cursor: pointer;
+  text-align: center;
+  line-height: 32px;
+}
+
 .title span {
   position: absolute;
   /* right: 50px; */
@@ -344,22 +379,6 @@ export default {
 
   color: white;
 }
-.days {
-  text-align: center;
-  position: absolute;
-  right: 0;
-  padding: 10px;
-}
-.rules {
-  position: absolute;
-  left: 0;
-  top: 0;
-  padding: 10px;
-  line-height: 25px;
-  /* font-size: 13px; */
-  color: goldenrod;
-  cursor: pointer;
-}
 
 .inp {
   /* display: inline-block; */
@@ -369,10 +388,12 @@ export default {
   line-height: 25px;
   font-size: 30px;
   text-align: center;
-  margin: 0 1px;
+  margin: 0 5px;
   border-radius: 8px;
   padding: 0;
-}
+  border: none;
+  outline: none;
+} 
 
 .butt,
 .myform {

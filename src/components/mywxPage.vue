@@ -1,8 +1,9 @@
 <template>
     <div id="mywx"> 
-        <div>个人开发的微信小程序，学习小程序的时候重新写的猜词游戏。</div>
-        <div>清云起</div>
+        <div>学习小程序的时候重新写的猜词游戏,手机端的适配更好。</div>
+        
         <div><img src="../../static/img/wx-img.jpg" alt=""></div>
+        <div>清云起</div>
     </div>
   </template>
   <script>
@@ -40,6 +41,7 @@
 img{
     display: flex;
     justify-content: center;
+    border-radius: 40px;
 }
  
 }
