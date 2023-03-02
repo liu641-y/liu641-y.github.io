@@ -36,6 +36,10 @@ export default new Router({
       path: '/mywx',
       name: 'mywx',
       component: resolve => require(['@/components/mywxPage'], resolve),
+    },{
+      path: '/questionPage',
+      name: 'questionPage',
+      component: resolve => require(['@/components/questionPage'], resolve),
     }
   ]
 })

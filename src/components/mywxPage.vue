@@ -31,7 +31,7 @@
   width: 600px;
   margin: auto;
   padding: 30px;
-  color: white;
+  font-weight: 600;
   div {
     display: flex;
     justify-content: center;

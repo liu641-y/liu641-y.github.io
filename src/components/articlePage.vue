@@ -84,7 +84,7 @@ export default {
   color: yellow;
 }
 #bookPage {
-  color: white;
+ 
   width: 600px;
   padding-top: 40px;
   margin: auto;
@@ -95,21 +95,24 @@ export default {
     margin-bottom: 10px;
     font-weight: 600;
   }
-  
+  /deep/ .el-collapse{
+    border-top: 1px solid black;
+  }
+   
   /deep/ .el-collapse-item__header {
     font-size: 20px;
-    color: white;
+    color: #2367C7;
     background: none;
     // justify-content: center;
     border: 0;
   }
   /deep/ .is-active{
     // border: 1px solid red;
-    color: lightcoral !important;
+    color: #D45634 !important;
   }
   /deep/ .el-collapse-item__arrow {
     // margin: 0;
-    color: white;
+    color: #2367C7;
     font-weight: bolder;
     // margin-left:40px;
   }
@@ -120,10 +123,10 @@ export default {
   }
   /deep/ .el-collapse-item__wrap   {
     background: none;
-   
+    border-bottom: 1px solid black;
   }
   /deep/ .el-collapse-item__content {
-    color: white;
+    color: #2367C7;
     font-size: 20px;
   }
   .booklist {

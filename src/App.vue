@@ -123,6 +123,7 @@ export default {
 };
 </script>
 <style>
+
 .backhome {
   cursor: pointer;
   color: red;
@@ -146,6 +147,7 @@ canvas {
 }
 #app {
   overflow: scroll;
+  color: #2367C7;
 }
 #app::-webkit-scrollbar {
   width: 0;
@@ -156,6 +158,6 @@ canvas {
   top: 0;
   left: 0;
   /* opacity: 0; */
-  background-color: rgb(104, 104, 104);
+  background-color: #FFFAE8;
 }
 </style>

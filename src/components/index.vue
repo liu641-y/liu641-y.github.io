@@ -13,7 +13,12 @@
     <div class="row">
     <span @click="jumpto('/mywx')" class="jumpto">我的微信小程序</span>
     </div>
- 
+    <!-- <div class="row">
+    <span @click="jumpto('/demoPage')" class="jumpto">照片展</span>
+    </div> -->
+    <div class="row">
+    <span @click="jumpto('/questionPage')" class="jumpto">一些 hr 关心的问题</span>
+    </div>
     <div class="caesar">
       <span class="intr" v-for="(letter, ind) in intrarr" :key="ind">{{
         letter
@@ -89,7 +94,7 @@ export default {
     transform: translateX(-50%);
   }
   padding-top: 80px;
-  color: white;
+ 
   // overflow: hidden;
   text-align: center;
   font-weight: bolder;
@@ -102,7 +107,7 @@ export default {
   }
   .intr {
     opacity: 0;
-    color: white;
+   
   }
   .el-icon-football {
     // right: 20px;

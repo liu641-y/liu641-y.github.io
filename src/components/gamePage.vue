@@ -199,6 +199,7 @@ export default {
     let firstdays = nowtime.getTime() - firstwechat;
     this.days = parseInt(firstdays / (1000 * 60 * 60 * 24));
     this.world = this.undoublearr[this.days - 312].toLowerCase();
+    console.log(this.world,'world')
     this.letterarr = this.world.split("");
   },
   methods: {
@@ -325,8 +326,8 @@ export default {
   border: none;
 }
 .mypage {
-  /* background-color: white; */
-  color: white;
+  /* background-color: black; */
+  color: black;
 }
 .title {
   text-align: center;
@@ -349,7 +350,7 @@ export default {
   padding: 10px;
   line-height: 25px;
   /* font-size: 13px; */
-  color: goldenrod;
+  color: #2367C7;
   cursor: pointer;
   text-align: center;
   line-height: 32px;
@@ -374,10 +375,10 @@ export default {
   border-radius: 5px;
   line-height: 30px;
   font-size: 30px;
-  border: 2px solid white;
+  border: 2px solid #CB2D01;
   text-align: center;
 
-  color: white;
+  color: black;
 }
 
 .inp {
@@ -391,7 +392,7 @@ export default {
   margin: 0 5px;
   border-radius: 8px;
   padding: 0;
-  border: none;
+  border: 2px solid #2367C7 ;
   outline: none;
 } 
 
@@ -402,12 +403,12 @@ export default {
 }
 
 .downlet {
-  background-color: #f56c6c;
+  background-color: #CB2D01;
   height: 40px;
   line-height: 40px;
   width: 40px;
   display: inline-block;
-  color: white;
+  color: black;
   font-size: 30px;
   text-align: center;
   margin-right: 5px;
@@ -424,19 +425,19 @@ export default {
 }
 
 .true {
-  background-color: #67c23a;
+  background-color: #41A863;
 }
 
 .unhave {
-  background-color: #f56c6c;
+  background-color: #CB2D01;
 }
 
 .confirm {
   margin: auto;
   margin-top: 15px;
   margin-bottom: 15px;
-  background-color: pink;
-  color: white;
+  background-color: #CB2D01;
+  color: black;
   border: none;
   height: 50px;
   line-height: 50px;

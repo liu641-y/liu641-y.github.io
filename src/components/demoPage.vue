@@ -5,7 +5,7 @@
       :key="index"
       class="ali"
       :style="{
-        background: 'url(../../static/man' + index + '.jpg)',
+        background: 'url(../../static/img/man' + index + '.jpg)',
         backgroundSize: 'cover',
       }"
       @click="jumpto()"
@@ -68,7 +68,7 @@ export default {
   perspective: 3000px;
   overflow: hidden;
   display: flex;
-  flex-direction: column;
+  // flex-direction: column;
   justify-content: space-around;
   align-items: center;
   transform-style: preserve-3d;
