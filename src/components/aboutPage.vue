@@ -59,7 +59,7 @@
     </div>
 
     <div>
-      项目经验：国寿官网，产品中心的样式改版。以及国寿官网，喜迎二十大模块开发。链接 <a href="https://www.chinalife.com.cn/chinalife/shsyz90/shzyjym/">https://www.chinalife.com.cn/chinalife/shsyz90/shzyjym/</a>
+      项目经验：国寿官网，产品中心的样式改版。以及国寿官网，喜迎二十大模块开发。链接 <a href="https://www.chinalife.com.cn/chinalife/shsyz90/shzyjym/">点此跳转</a>
     </div>
     <div class="mycarousel">
       <el-carousel height="250px" indicator-position="none">
